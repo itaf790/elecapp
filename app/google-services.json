@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "759361221139",
+    "project_id": "elecshopping-ee66e",
+    "storage_bucket": "elecshopping-ee66e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759361221139:android:11276a27d1f78945f085e6",
+        "android_client_info": {
+          "package_name": "com.example.elecshopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759361221139-pv0e955711q5kss0j4d5sf7oae27snmn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbNhXmmDEpu-P6hwiZPIignMZmTm7gfeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759361221139-pv0e955711q5kss0j4d5sf7oae27snmn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
