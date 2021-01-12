@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ElecShopping">
-        <activity android:name=".discoverappActivity"></activity>
+        <activity android:name=".cartActivity"></activity>
+        <activity android:name=".discoverappActivity" />
         <activity android:name=".registerActivity" />
         <activity android:name=".MainActivity" />
         <activity

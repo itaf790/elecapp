@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="185dp"
         android:layout_height="143dp"
-        android:src="@drawable/logoo" />
+        android:src="@drawable/elec" />
 
 
 
