@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserReturnsActivity"
+    android:background="@drawable/backm">
+
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="40dp"
+        android:layout_height="44dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="31dp"
+        android:src="@drawable/back"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="6dp"></ImageView>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="256dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:layout_marginEnd="76dp"
+        android:gravity="center|center_horizontal"
+        android:text="Returns Policy"
+        android:textAlignment="center"
+        android:textColor="#372E2E"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="0dp"></TextView>
+
+
+    <TextView
+        android:id="@+id/texttxtreturnspolicy"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_below="@id/text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="text "
+        android:layout_marginStart="3dp"></TextView>
+
+</RelativeLayout>

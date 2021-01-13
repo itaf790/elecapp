@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.elecshopping"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -34,12 +34,13 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.firebase:firebase-auth:20.0.1'
+    implementation 'com.google.firebase:firebase-database:19.6.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     implementation 'com.google.firebase:firebase-analytics'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.github.rey5137:material:1.3.1'
-
+/// countrycodepicker
     implementation 'com.github.yesterselga:country-picker-android:1.0'
     implementation 'com.github.gbksoft:GBKCountryCodePicker:v1.0.0'
     implementation 'com.hbb20:ccp:1.7.1'
@@ -47,9 +48,22 @@ dependencies {
     implementation 'com.synnapps:carouselview:0.1.5'
     implementation 'com.google.zxing:core:3.4.1'
     implementation 'com.google.android.material:material:1.1.0-alpha10'
-
+//// circle img
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+
+    ///// this for admin add new products for table
+    implementation 'com.pusher:pusher-java-client:1.0.0'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+    implementation 'com.google.code.gson:gson:2.2.4'
+
+    //// thid for card form
+    implementation 'com.braintreepayments:card-form:5.0.0'
+
+    //// thid for product qnt
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+    api 'com.theartofdev.edmodo:android-image-cropper:2.8.+'
 
 }

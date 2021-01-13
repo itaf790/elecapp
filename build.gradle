@@ -17,7 +17,12 @@ allprojects {
     repositories {
         google()
         jcenter()
+
+        /// this for countrycodepicker in register
         maven { url 'https://jitpack.io'}
+
+        /////this for table in admin add new products
+        maven { url 'http://clojars.org/repo' }
     }
 }
 
