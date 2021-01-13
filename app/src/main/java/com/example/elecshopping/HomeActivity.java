@@ -2,14 +2,13 @@ package com.example.elecshopping;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
 
-public class discoverappActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
 
     private int[] mImages = new int[]{
@@ -22,7 +21,7 @@ public class discoverappActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_discoverapp);
+        setContentView(R.layout.activity_home);
 
         CarouselView carouselView = findViewById (R.id.carouselView);
         carouselView.setPageCount (mImages.length);
