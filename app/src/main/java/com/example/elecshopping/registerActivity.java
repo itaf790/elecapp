@@ -128,38 +128,24 @@ public class registerActivity extends AppCompatActivity {
                             mUserDetails.child("Users").child(uid).setValue(userDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
-                                        Toast.makeText(registerActivity.this, "Congratulations, your account has been created", Toast.LENGTH_SHORT).show();
-                                        loadingBar.dismiss();
-
-                                        Intent intent = new Intent(registerActivity.this,HomeActivity.class);
-                                        startActivity(intent);
-                                    }
-
-                                    else {
-                                        loadingBar.dismiss();
-                                        Toast.makeText(registerActivity.this, "Network Error: Please try again after some time ", Toast.LENGTH_SHORT).show();
-
-                                    }
-
+                                    mRegProgress.dismiss();
+                                    Toast.makeText(registerActivity.this,"Account Successfully Created",Toast.LENGTH_SHORT).show();
 
                                 }
                             });
 
-                        } else {
-                            Toast.makeText(registerActivity.this, "This" + email + "already exists", Toast.LENGTH_SHORT).show();
-                            loadingBar.dismiss();
-                            Toast.makeText(registerActivity.this, "Please try again using another email", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(registerActivity.this, MainActivity.class);
-                            startActivity(intent);
+
                         }
+                        else {
 
-
+                            mRegProgress.hide();
+                            Toast.makeText(registerActivity.this,"Creating Account Failed",Toast.LENGTH_LONG).show();
+                        }
                     }
-
-
                 });
 
-
     }
+
+
+
 }
