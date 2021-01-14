@@ -30,6 +30,7 @@ android {
 
 dependencies {
     implementation platform('com.google.firebase:firebase-bom:26.2.0')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -81,6 +82,9 @@ dependencies {
     implementation 'androidx.drawerlayout:drawerlayout:1.1.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+/// this for checkbox
+    implementation 'io.paperdb:paperdb:2.7.1'
 
 
 }
