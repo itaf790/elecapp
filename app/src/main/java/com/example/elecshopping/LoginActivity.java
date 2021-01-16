@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.elecshopping.Admin.AdminHomeActivity;
 import com.example.elecshopping.Admin.AdminloginActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;//Used for firebase authentication
     private ProgressDialog loadingBar;
     private String parentDbName="Users";
-    private com.rey.material.widget.CheckBox chkBoxRememberMe; // this for checkbox remmember
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,11 +91,11 @@ public class LoginActivity extends AppCompatActivity {
         AdminLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, AdminloginActivity.class);
-                startActivity(intent);
+
 
             }
         });
+
 
 
 
@@ -122,21 +123,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     private void AllowUserToLogin() {
-
-        if(chkBoxRememberMe.isChecked())
-        {
-            Paper.book().write(Prevelent.UserEmailKey, Email);
-            Paper.book().write(Prevelent.UserPasswordKey, Password);
-        }
-
-
         String email = Email.getText().toString().trim();
         String pwd = Password.getText().toString();
         if(TextUtils.isEmpty(email))
         {
-            Toast.makeText(LoginActivity.this,"Please enter email ",Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this,"Please enter email",Toast.LENGTH_SHORT).show();
         }
         if(TextUtils.isEmpty(pwd))
         {
@@ -154,27 +146,34 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful())//If account login successful print message and send user to main Activity
                             {
-                                sendToHomeActivity();
-                                Toast.makeText(LoginActivity.this,"Welcome, Enjoy Shopping  ",Toast.LENGTH_SHORT).show();
+                                sendToMainActivity();
+                                Toast.makeText(LoginActivity.this,"Welcome, Enjoy Shopping ",Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                             }
                             else//Print the error message incase of failure
                             {
                                 String msg = task.getException().toString();
+                                Toast.makeText(LoginActivity.this,"Please try again ",Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
-                                Toast.makeText(LoginActivity.this, "Password is incorrect", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
         }
     }
 
-
-    private void sendToHomeActivity() {
-        //This is to send user to MainActivity
-        Intent  HomeIntent = new Intent(LoginActivity.this,HomeActivity.class);
-        startActivity(HomeIntent);
+    protected void onStart() {
+        //Check if user has already signed in if yes send to mainActivity
+        //This to avoid signing in everytime you open the app.
+        super.onStart();
+        if(currentUser!=null)
+        {
+            sendToMainActivity();
+        }
     }
 
-
+    private void sendToMainActivity() {
+        //This is to send user to MainActivity
+        Intent  MainIntent = new Intent(LoginActivity.this,HomeActivity.class);
+        startActivity(MainIntent);
+    }
 }

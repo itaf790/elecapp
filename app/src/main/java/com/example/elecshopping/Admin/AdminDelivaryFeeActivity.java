@@ -24,18 +24,18 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-public class AdminReturnsActivity extends AppCompatActivity {
-
+public class AdminDelivaryFeeActivity extends AppCompatActivity {
 
     private ImageView closeTextBtn;
-    private EditText inputreturns;
+    private EditText inputdeliveryfee;
     private ProgressDialog loadingBar;
     private Button Continue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_returns);
+        setContentView(R.layout.activity_admin_delivary_fee);
+
         closeTextBtn = (ImageView) findViewById(R.id.close);
         closeTextBtn.setOnClickListener(new View.OnClickListener()
         {
@@ -47,7 +47,7 @@ public class AdminReturnsActivity extends AppCompatActivity {
         });
 
         Continue=(Button)findViewById(R.id.recon);
-        inputreturns=(EditText) findViewById(R.id.edittxtreturnepolicy);
+        inputdeliveryfee=(EditText) findViewById(R.id.edittxtdeliveryfee);
 
 
 
@@ -57,7 +57,7 @@ public class AdminReturnsActivity extends AppCompatActivity {
         Continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddingReturns();
+                Addingfee();
             }
         });
 
@@ -65,26 +65,26 @@ public class AdminReturnsActivity extends AppCompatActivity {
 
 
 
-    private void AddingReturns() {
-        String returns= inputreturns.getText().toString() ;
+    private void Addingfee() {
+        String fee= inputdeliveryfee.getText().toString() ;
 
-        if (TextUtils.isEmpty(returns)){
-            Toast.makeText(this, "Please write your returns policy", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(fee)){
+            Toast.makeText(this, "Please write your delivery fee", Toast.LENGTH_SHORT).show();
         }
 
         else{
 
-            loadingBar.setTitle("Adding Returns Policy");
+            loadingBar.setTitle("Adding Delivery Fee");
             loadingBar.setMessage("please wait");
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            addreturns(returns);
+            addfee(fee);
         }
 
     }
 
-    private void addreturns(final String returns) {
+    private void addfee(final String fee) {
         final DatabaseReference RootRef;
         RootRef= FirebaseDatabase.getInstance().getReference();
         RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -92,26 +92,26 @@ public class AdminReturnsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if (!(snapshot.child("Admin").child(returns).exists())) {
+                if (!(snapshot.child("Admin").child(fee).exists())) {
                     HashMap<String, Object> userdataMap= new HashMap<>();
-                    userdataMap.put("Returns_policy",returns);
+                    userdataMap.put("Delivery_fee",fee);
 
 
-                    RootRef.child("Admin").child("Policies").child("Returns_policy").updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    RootRef.child("Admin").child("Policies").child("Delivery_fee").updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
 
                             if (task.isSuccessful()){
-                                Toast.makeText(AdminReturnsActivity.this, "Congratulations...", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AdminDelivaryFeeActivity.this, "Congratulations...", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
 
-                                Intent intent = new Intent(AdminReturnsActivity.this,AdminHomeActivity.class);
+                                Intent intent = new Intent(AdminDelivaryFeeActivity.this,AdminHomeActivity.class);
                                 startActivity(intent);
                             }
 
                             else {
                                 loadingBar.dismiss();
-                                Toast.makeText(AdminReturnsActivity.this, "Network Error: Please try again  ", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(AdminDelivaryFeeActivity.this, "Network Error: Please try again  ", Toast.LENGTH_SHORT).show();
 
                             }
 
@@ -120,10 +120,10 @@ public class AdminReturnsActivity extends AppCompatActivity {
                     });
 
                 } else {
-                    Toast.makeText(AdminReturnsActivity.this, "This already exists", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AdminDelivaryFeeActivity.this, "This already exists", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
-                    Toast.makeText(AdminReturnsActivity.this, "Please try again", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(AdminReturnsActivity.this, AdminHomeActivity.class);
+                    Toast.makeText(AdminDelivaryFeeActivity.this, "Please try again", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(AdminDelivaryFeeActivity.this, AdminHomeActivity.class);
                     startActivity(intent);
                 }
 

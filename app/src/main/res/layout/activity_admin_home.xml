@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:gravity="center">
 
@@ -42,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="15dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginEnd="15dp"
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/buttons"
@@ -53,12 +53,30 @@
                     android:textColorHint="#FFFFFF"
                     android:textSize="18sp" />
 
-                <Button
+            <Button
+                android:id="@+id/add_new_category"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/add_new_item"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/buttons"
+                android:gravity="center_horizontal"
+                android:hint="Add new category"
+                android:padding="12dp"
+                android:textAlignment="center"
+                android:textColorHint="#FFFFFF"
+                android:textSize="18sp"/>
+
+
+            <Button
                     android:id="@+id/show_orders"
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-
-                    android:layout_below="@id/add_new_item"
+                    android:layout_below="@id/add_new_category"
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="1dp"
@@ -66,7 +84,7 @@
                     android:layout_marginBottom="15dp"
                     android:background="@drawable/buttons"
                     android:gravity="center_horizontal"
-                    android:hint="show orders"
+                    android:hint="Show orders"
                     android:padding="12dp"
                     android:textAlignment="center"
                     android:textColorHint="#FFFFFF"
@@ -179,6 +197,25 @@
                     android:textAlignment="center"
                     android:textColorHint="#FFFFFF"
                     android:textSize="18sp" />
+
+
+            <Button
+                android:id="@+id/adminlogout"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/returnspolicy"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/buttons"
+                android:gravity="center_horizontal"
+                android:hint="logOut"
+                android:padding="12dp"
+                android:textAlignment="center"
+                android:textColorHint="#FFFFFF"
+                android:textSize="18sp" />
 
 
         </LinearLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="300dp"
+    android:layout_height="280dp"
+    tools:context=".UserLoginRegisterActivity"
+    android:id="@+id/rl_custom_layout"
+    android:padding="50dp"
+    android:background="@drawable/backm">
+
+
+    <ImageButton
+        android:id="@+id/ib_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:background="@null"
+
+        android:src="@drawable/ic_baseline_close_24" />
+
+
+
+    <TextView
+        android:id="@+id/addlog"
+        android:layout_below="@id/ib_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log In ?"
+        android:layout_centerInParent="true"
+        android:padding="10sp"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        />
+    <TextView
+        android:id="@+id/addregister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register ?"
+        android:layout_below="@id/addlog"
+        android:layout_marginTop="10dp"
+        android:layout_centerInParent="true"
+        android:padding="10sp"
+        android:textColor="@color/black"
+        android:textSize="40dp"
+        />
+
+
+
+</RelativeLayout>

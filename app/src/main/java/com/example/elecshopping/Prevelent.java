@@ -1,5 +1,7 @@
 package com.example.elecshopping;
 
+import com.example.elecshopping.Model.Users;
+
 public class Prevelent {
 
     public static Users currentonlineusers;
