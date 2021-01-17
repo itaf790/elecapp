@@ -2,71 +2,7 @@ package com.example.elecshopping.Model;
 
 public class Products {
 
-    private String pname, description,price, image,category, date,pid,time , paymentmethod , delivtime, delivfee, brand , qnt;
-
-    public Products(String paymentmethod, String delivtime, String delivfee, String brand, String qnt) {
-        this.paymentmethod = paymentmethod;
-        this.delivtime = delivtime;
-        this.delivfee = delivfee;
-        this.brand = brand;
-        this.qnt = qnt;
-    }
-
-    public String getPaymentmethod() {
-        return paymentmethod;
-    }
-
-    public void setPaymentmethod(String paymentmethod) {
-        this.paymentmethod = paymentmethod;
-    }
-
-    public String getDelivtime() {
-        return delivtime;
-    }
-
-    public void setDelivtime(String delivtime) {
-        this.delivtime = delivtime;
-    }
-
-    public String getDelivfee() {
-        return delivfee;
-    }
-
-    public void setDelivfee(String delivfee) {
-        this.delivfee = delivfee;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public String getQnt() {
-        return qnt;
-    }
-
-    public void setQnt(String qnt) {
-        this.qnt = qnt;
-    }
-
-    public Products(){
-
-
-    }
-
-    public Products(String pname, String description, String price, String image, String category, String date, String pid, String time) {
-        this.pname = pname;
-        this.description = description;
-        this.price = price;
-        this.image = image;
-        this.category = category;
-        this.date = date;
-        this.pid = pid;
-        this.time = time;
-    }
+    private String pname, pdescription,pprice, pimage,pcategory, pdate,pid,ptime , ppaymentmethod , pdelivtime, pdelivfee, pbrand , pqnt;
 
     public String getPname() {
         return pname;
@@ -76,44 +12,44 @@ public class Products {
         this.pname = pname;
     }
 
-    public String getDescription() {
-        return description;
+    public String getPdescription() {
+        return pdescription;
     }
 
-    public void setDescription(String desc) {
-        this.description = desc;
+    public void setPdescription(String pdescription) {
+        this.pdescription = pdescription;
     }
 
-    public String getPrice() {
-        return price;
+    public String getPprice() {
+        return pprice;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setPprice(String pprice) {
+        this.pprice = pprice;
     }
 
-    public String getImage() {
-        return image;
+    public String getPimage() {
+        return pimage;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setPimage(String pimage) {
+        this.pimage = pimage;
     }
 
-    public String getCategory() {
-        return category;
+    public String getPcategory() {
+        return pcategory;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setPcategory(String pcategory) {
+        this.pcategory = pcategory;
     }
 
-    public String getDate() {
-        return date;
+    public String getPdate() {
+        return pdate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setPdate(String pdate) {
+        this.pdate = pdate;
     }
 
     public String getPid() {
@@ -124,11 +60,74 @@ public class Products {
         this.pid = pid;
     }
 
-    public String getTime() {
-        return time;
+    public String getPtime() {
+        return ptime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setPtime(String ptime) {
+        this.ptime = ptime;
     }
-}
+
+    public String getPpaymentmethod() {
+        return ppaymentmethod;
+    }
+
+    public void setPpaymentmethod(String ppaymentmethod) {
+        this.ppaymentmethod = ppaymentmethod;
+    }
+
+    public String getPdelivtime() {
+        return pdelivtime;
+    }
+
+    public void setPdelivtime(String pdelivtime) {
+        this.pdelivtime = pdelivtime;
+    }
+
+    public String getPdelivfee() {
+        return pdelivfee;
+    }
+
+    public void setPdelivfee(String pdelivfee) {
+        this.pdelivfee = pdelivfee;
+    }
+
+    public String getPbrand() {
+        return pbrand;
+    }
+
+    public void setPbrand(String pbrand) {
+        this.pbrand = pbrand;
+    }
+
+    public String getPqnt() {
+        return pqnt;
+    }
+
+    public void setPqnt(String pqnt) {
+        this.pqnt = pqnt;
+    }
+
+    public Products(String pname, String pdescription, String pprice, String pimage, String pcategory, String pdate, String pid, String ptime, String ppaymentmethod, String pdelivtime, String pdelivfee, String pbrand, String pqnt) {
+        this.pname = pname;
+        this.pdescription = pdescription;
+        this.pprice = pprice;
+        this.pimage = pimage;
+        this.pcategory = pcategory;
+        this.pdate = pdate;
+        this.pid = pid;
+        this.ptime = ptime;
+        this.ppaymentmethod = ppaymentmethod;
+        this.pdelivtime = pdelivtime;
+        this.pdelivfee = pdelivfee;
+        this.pbrand = pbrand;
+        this.pqnt = pqnt;
+    }
+
+    public Products() {
+
+
+    }}
+
+
+

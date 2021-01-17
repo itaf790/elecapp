@@ -2,12 +2,16 @@ package com.example.elecshopping;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
-import android.widget.TextView;
+
+import com.example.elecshopping.User.UserDeliveryFeeActivity;
+import com.example.elecshopping.User.UserDeliveryTimeActivity;
+import com.example.elecshopping.User.UserExchangeActivity;
+import com.example.elecshopping.User.UserPaymentMethodActivity;
+import com.example.elecshopping.User.UserReturnsActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;

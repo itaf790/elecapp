@@ -34,7 +34,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private Button addToCartButton;
     private ImageView productImage;
     private ElegantNumberButton numberButton;
-    private TextView productPrice, productDescription,productName;
+    private TextView productPrice, productDescription,productName , deliverytime, deliveryfee, paymentmethod, productqnt ;
     private String productID = "", state = "Normal";
 
 
@@ -62,7 +62,12 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productImage = (ImageView) findViewById(R.id.product_image_details);
         productPrice = (TextView) findViewById(R.id.product_price);
         productDescription = (TextView) findViewById(R.id.product_description);
-        productName = (TextView) findViewById(R.id.product_name);
+        productqnt = (TextView) findViewById(R.id.product_qnt);
+        deliveryfee = (TextView) findViewById(R.id.delivery_fee);
+       deliverytime = (TextView) findViewById(R.id.delivery_time);
+        paymentmethod = (TextView) findViewById(R.id.payment_method);
+
+
         productID=getIntent().getStringExtra("pid");
 
 
@@ -105,10 +110,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
             final HashMap<String, Object> cartMap = new HashMap<>();
             cartMap.put("pid",productID);
             cartMap.put("pname",productName.getText().toString());
-            cartMap.put("price",productPrice.getText().toString());
-            cartMap.put("date",saveCurrentDate);
-            cartMap.put("time",saveCurrentTime);
-            cartMap.put("quantity",numberButton.getNumber());
+            cartMap.put("pprice",productPrice.getText().toString());
+            cartMap.put("pdate",saveCurrentDate);
+            cartMap.put("ptime",saveCurrentTime);
+            cartMap.put("pquantity",numberButton.getNumber());
+        cartMap.put("ppayment_method",paymentmethod.getText().toString());
+        cartMap.put("pdelivery_fee",deliveryfee.getText().toString());
+        cartMap.put("pdelivery_time",deliverytime.getText().toString());
             cartMap.put("discount","");
 
             cartListRef.child("User View").child(Prevelent.currentonlineusers.getEmail())
@@ -123,7 +131,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()) {
-
                                                     Toast.makeText(ProductDetailsActivity.this, "Added To Cart List", Toast.LENGTH_SHORT).show();
                                                     Intent intent = new Intent(ProductDetailsActivity.this, HomeActivity.class);
                                                     startActivity(intent);
@@ -137,8 +144,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
                         }
                     });
 
-
-///////////////////////////////////////////delete user view
 
         }
 
@@ -157,9 +162,13 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     Products products = dataSnapshot.getValue(Products.class);
 
                     productName.setText(products.getPname());
-                    productPrice.setText(products.getPrice());
-                    productDescription.setText(products.getDescription());
-                    Picasso.get().load(products.getImage()).into(productImage);
+                    productqnt.setText(products.getPqnt());
+                   deliveryfee.setText(products.getPdelivfee());
+                   deliverytime.setText(products.getPtime());
+                   paymentmethod.setText(products.getPpaymentmethod());
+                    productPrice.setText(products.getPprice());
+                    productDescription.setText(products.getPdescription());
+                    Picasso.get().load(products.getPimage()).into(productImage);
 
 
 

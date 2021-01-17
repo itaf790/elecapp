@@ -1,8 +1,10 @@
-package com.example.elecshopping;
+package com.example.elecshopping.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.elecshopping.R;
 
 public class UserDeliveryTimeActivity extends AppCompatActivity {
 

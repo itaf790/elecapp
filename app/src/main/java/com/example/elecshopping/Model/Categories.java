@@ -10,11 +10,11 @@ import java.util.ArrayList;
 
 public class Categories implements ListAdapter {
 
-    private String cname,image,cid;
+    private String cname,cimage,cid;
 
-    public Categories(String cname, String image, String cid) {
+    public Categories(String cname, String cimage, String cid) {
         this.cname = cname;
-        this.image = image;
+        this.cimage = cimage;
         this.cid = cid;
     }
 
@@ -26,12 +26,12 @@ public class Categories implements ListAdapter {
         this.cname = cname;
     }
 
-    public String getImage() {
-        return image;
+    public String getCimage() {
+        return cimage;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setCimage(String cimage) {
+        this.cimage = cimage;
     }
 
     public String getCid() {

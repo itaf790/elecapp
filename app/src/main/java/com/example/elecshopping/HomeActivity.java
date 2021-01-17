@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,8 @@ import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 
+import io.paperdb.Paper;
+
 public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
 
@@ -56,6 +59,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     private RecyclerView recyclerView;
     private String type="";
     RecyclerView.LayoutManager layoutManager;
+    ProgressDialog progressDialog;
+
+   // this for hide addperson in home activity
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
     private ImageView person;
@@ -74,7 +80,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     private Context mContext;
     private Activity mActivity;
     private RelativeLayout mRelativeLayout;
-
     private PopupWindow mPopupWindow;
     ;
 
@@ -97,6 +102,10 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        progressDialog = new ProgressDialog(HomeActivity.this);
+        progressDialog.setMessage("Loading Images From Firebase.");
+        progressDialog.show();
+
         person = (ImageView) findViewById(R.id.person);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -117,6 +126,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         }
 
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+        Paper.init(this);
 
         recyclerView = findViewById(R.id.recycler_menu);
         recyclerView.setHasFixedSize(true);
@@ -227,9 +237,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
 
                         holder.txtProductName.setText(model.getPname());
-                        holder.txtProductDesc.setText(model.getDescription());
-                        holder.txtProductPrice.setText("Price = " +model.getPrice() +"$");
-                        Picasso.get().load(model.getImage()).into(holder.imageView);
+                        holder.txtProductDesc.setText(model.getPdescription());
+                        holder.txtProductPrice.setText("Price = " +model.getPprice() +"$");
+                        Picasso.get().load(model.getPimage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -268,6 +278,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         adapter.startListening();
     }
 
+
+    //// hay 3shan el navigation teshte8el
     private void setListeners() {
         bottomNavigationView.setOnNavigationItemSelectedListener (this);
     }
@@ -300,5 +312,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         }
         return false;
     }
+
 
 }

@@ -68,19 +68,19 @@
             <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/my_drwable"
+
                 android:padding="5dp"
                 android:layout_marginTop="10dp">
 
                 <TableRow
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputs">
 
                     <TextView
                         android:id="@+id/txtpaymentmethod"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:background="@drawable/my_drwable"
                         android:gravity="center"
                         android:padding="15dip"
                         android:textColor="@color/black"
@@ -90,20 +90,22 @@
                         android:id="@+id/maintan_paymentmethod"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
-                        android:text="text" />
+                         />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputs"
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
                         android:id="@+id/txtdeliveryfee"
@@ -114,22 +116,24 @@
                         android:layout_width="0dp"
                         android:id="@+id/maintan_deliveryfee"
                         android:layout_weight="1"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
-                        android:text="1" />
+                        />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputs"
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:id="@+id/txtdeliverytime"
                         android:textColor="@color/black"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
                         android:text="Delivery time" />
@@ -138,21 +142,23 @@
                         android:id="@+id/maintan_deliverytime"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
                         android:text="" />
                 </TableRow>
                 <TableRow
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputs"
+                    android:layout_marginTop="10dp" >
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:id="@+id/txtproductname"
                         android:textColor="@color/black"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
                         android:text="Product name" />
@@ -161,20 +167,22 @@
                         android:id="@+id/maintan_product_name"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
-                        android:text="1" />
+                       />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputs"
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
                         android:text="product price"
@@ -185,19 +193,21 @@
                         android:id="@+id/maintan_product_price"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
-                        android:text="1" />
+                        />
                 </TableRow>
                 <TableRow
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputs"
+                    android:layout_marginTop="10dp" >
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
                         android:text="product quantity"
@@ -208,20 +218,22 @@
                         android:id="@+id/maintan_product_qnt"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
-                        android:text="1" />
+                        />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputs"
+                    android:layout_marginTop="10dp">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
                         android:text="Product brand"
@@ -232,20 +244,22 @@
                         android:id="@+id/maintan_product_brand"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
-                        android:text="1" />
+                         />
                 </TableRow>
 
                 <TableRow
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputs"
+                    android:layout_marginTop="10dp" >
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
                         android:text="Description"
@@ -256,10 +270,10 @@
                         android:id="@+id/maintan_product_description"
                         android:layout_width="0dp"
                         android:layout_weight="1"
-                        android:background="@drawable/my_drwable"
+
                         android:gravity="center"
                         android:padding="15dip"
-                        android:text="1" />
+                         />
                 </TableRow>
 
             </TableLayout>

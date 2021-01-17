@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ExchangeAndReturnsActivity"
+    android:background="@drawable/backm">
+
+
+
+
+    <ImageView
+        android:id="@+id/close"
+        android:layout_width="30dp"
+        android:layout_height="44dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/back"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="39dp"
+        tools:layout_editor_absoluteY="6dp"></ImageView>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="256dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
+        android:layout_marginEnd="76dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center|center_horizontal"
+        android:text="Return and Exhcange"
+        android:textAlignment="center"
+        android:textColor="#372E2E"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="0dp"></TextView>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text"
+        android:layout_marginTop="20dp"
+       >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+
+    <TextView
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+  android:id="@+id/txtre"
+    android:layout_marginTop="20dp"
+  android:layout_gravity="center"
+    android:textColor="@color/black"
+    android:textSize="17dp"
+    android:text="Usually, the exchange and return process for orders takes 1-2 days"></TextView>
+
+    <ImageView
+        android:id="@+id/exreimage"
+        android:layout_width="160dp"
+        android:layout_height="180dp"
+        android:layout_below="@id/txtre"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"></ImageView>
+
+            <TextView
+                android:id="@+id/exrename"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="name"
+                android:textColor="@color/black"
+                android:textSize="20dp"></TextView>
+
+            <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/exrebrand"
+        android:text="brand"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_below="@id/exrename"
+        android:layout_toEndOf="@id/exreimage"></TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/exreprice"
+        android:text="price"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_below="@id/exrebrand"
+        android:layout_toEndOf="@id/exreimage"></TextView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/exreqnt"
+        android:text="quantity"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_below="@id/exreprice"
+        android:layout_toEndOf="@id/exreimage"></TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/exreqnt"
+        android:text="Select One:"
+android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"></TextView>
+
+
+
+
+    <RadioButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Exchange"
+        android:layout_marginStart="50dp"
+        android:id="@+id/radioex"></RadioButton>
+
+
+            <RadioButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Returns"
+                android:layout_marginStart="50dp"
+                android:id="@+id/radiore"></RadioButton>
+
+            <TextView
+                android:id="@+id/msg1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="17dp"
+                android:layout_marginBottom="45dp"
+                android:gravity="center_horizontal"
+                android:text="You will be contacted by phone "
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/close"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <EditText
+                android:layout_width="358dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/exreqnt"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="Write down the reason"
+                android:textColor="@color/black"></EditText>
+            <Button
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:text="Next"
+                android:background="@drawable/buttons"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_gravity="center"></Button>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

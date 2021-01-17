@@ -1,14 +1,16 @@
-package com.example.elecshopping;
+package com.example.elecshopping.User;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class UserPaymentMethodActivity extends AppCompatActivity {
+import com.example.elecshopping.R;
+
+public class UserExchangeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_payment_method);
+        setContentView(R.layout.activity_user_exchange);
     }
 }
