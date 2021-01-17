@@ -26,7 +26,7 @@ import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private ImageView closeTextBtn;
+    private ImageView closeTextBtn , person;
     private EditText Email,Password;
     private Button login;
     private TextView AdminLink, NotAdminLink,forgotPassword;
@@ -34,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;//Used for firebase authentication
     private ProgressDialog loadingBar;
     private String parentDbName="Users";
+
 
 
     @Override
@@ -51,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         Email = (EditText) findViewById(R.id.email);
         Password = (EditText) findViewById(R.id.pass);
         login = (Button) findViewById(R.id.login);
@@ -66,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AllowUserToLogin();
+
             }
         });
 
@@ -175,5 +178,6 @@ public class LoginActivity extends AppCompatActivity {
         //This is to send user to MainActivity
         Intent  MainIntent = new Intent(LoginActivity.this,HomeActivity.class);
         startActivity(MainIntent);
+
     }
 }

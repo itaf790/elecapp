@@ -32,6 +32,8 @@ import com.example.elecshopping.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -54,6 +56,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     private RecyclerView recyclerView;
     private String type="";
     RecyclerView.LayoutManager layoutManager;
+    private FirebaseUser currentUser;
+    private FirebaseAuth mAuth;
+    private ImageView person;
 
 
 
@@ -69,8 +74,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
     private Context mContext;
     private Activity mActivity;
     private RelativeLayout mRelativeLayout;
-    private ImageView person;
+
     private PopupWindow mPopupWindow;
+    ;
 
 
     /// this for slide show
@@ -91,7 +97,12 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
+        person = (ImageView) findViewById(R.id.person);
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        if ( currentUser!=null){
+            person.setVisibility(View.GONE);
+        }
         ///// hay ll navigatiom
 
         bottomNavigationView = findViewById (R.id.nav_view);
@@ -134,10 +145,11 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         mActivity = HomeActivity.this;
 
         mRelativeLayout = (RelativeLayout) findViewById(R.id.r1);
-        person = (ImageView) findViewById(R.id.person);
         person.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 // Initialize a new instance of LayoutInflater service
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
 
@@ -163,6 +175,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                         Intent myIntent = new Intent(HomeActivity.this,
                                 LoginActivity.class);
                         startActivity(myIntent);
+                        person.setVisibility(View.GONE);
 
 
                     }
@@ -175,7 +188,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                         Intent myIntent = new Intent(HomeActivity.this,
                                 registerActivity.class);
                         startActivity(myIntent);
-
+                        person.setVisibility(View.GONE);
 
                     }
                 });
@@ -192,8 +205,8 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 mPopupWindow.showAtLocation(mRelativeLayout, Gravity.CENTER, 0, 0);
 
             }
-        });
 
+        });
 
 
 
