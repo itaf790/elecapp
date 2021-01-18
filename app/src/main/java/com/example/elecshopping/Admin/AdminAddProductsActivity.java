@@ -33,14 +33,14 @@ import java.util.HashMap;
 public class AdminAddProductsActivity extends AppCompatActivity {
 
 
-    private String categoryName, description, price, pname,saveCurrentDate, saveCurrentTime,pbrand , paymentmethod, deltime, delfee, pqnt;
+    private String pcategoryName, pdescription, pprice, pname,psaveCurrentDate, psaveCurrentTime,pbrand , ppaymentmethod, pdeltime, pdelfee, pqnt;
     private Button addNewProductButton;
     private ImageView inputProductImage;
     private EditText inputProductName, inputProductDescription, inputProductPrice, inputProductqnt
             , inputProductbrand, inputProductpaymentmethod , inputProductdelfee, inputProductdeltime ;
     private static final int GalleryPick = 1;
-    private Uri imageUri;
-    private String productRandomKey,downLoadImageUrl;
+    private Uri pimageUri;
+    private String pproductRandomKey,pdownLoadImageUrl;
     private StorageReference productImagesRef;
     private DatabaseReference productsRef;
     private ProgressDialog loadingBar;
@@ -63,16 +63,16 @@ public class AdminAddProductsActivity extends AppCompatActivity {
         productImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
         productsRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
-        addNewProductButton = (Button) findViewById(R.id.add_new_product);
-        inputProductImage = (ImageView) findViewById(R.id.product_image);
-        inputProductName = (EditText) findViewById(R.id.product_name);
-        inputProductDescription = (EditText) findViewById(R.id.product_description);
-        inputProductPrice = (EditText) findViewById(R.id.product_price);
-        inputProductpaymentmethod = (EditText) findViewById(R.id.paymentmethod);
-        inputProductdelfee = (EditText) findViewById(R.id.deliveryfee);
-         inputProductdeltime= (EditText) findViewById(R.id.deliverytime);
-        inputProductqnt= (EditText) findViewById(R.id.product_qnt);
-        inputProductbrand= (EditText) findViewById(R.id.product_brand);
+        addNewProductButton = (Button) findViewById(R.id.adminadd_new_product);
+        inputProductImage = (ImageView) findViewById(R.id.adminproduct_image);
+        inputProductName = (EditText) findViewById(R.id.adminproduct_name);
+        inputProductDescription = (EditText) findViewById(R.id.adminproduct_description);
+        inputProductPrice = (EditText) findViewById(R.id.adminproduct_price);
+        inputProductqnt= (EditText) findViewById(R.id.adminproduct_qnt);
+        inputProductpaymentmethod= (EditText) findViewById(R.id.adminpaymentmethod);
+        inputProductdelfee= (EditText) findViewById(R.id.admindeliveryfee);
+        inputProductbrand= (EditText) findViewById(R.id.adminproduct_brand);
+        inputProductdeltime= (EditText) findViewById(R.id.admindeliverytime);
 
         loadingBar = new ProgressDialog(this);
 
@@ -111,31 +111,31 @@ public class AdminAddProductsActivity extends AppCompatActivity {
 
         if (requestCode == GalleryPick && resultCode == RESULT_OK && data != null) {
 
-            imageUri = data.getData();
-            inputProductImage.setImageURI(imageUri);
+            pimageUri = data.getData();
+            inputProductImage.setImageURI(pimageUri);
         }
     }
 
     private void validateProductData() {
 
-        description = inputProductDescription.getText().toString();
-        price = inputProductPrice.getText().toString();
+        pdescription = inputProductDescription.getText().toString();
+        pprice = inputProductPrice.getText().toString();
         pname = inputProductName.getText().toString();
         pbrand = inputProductbrand.getText().toString();
         pqnt = inputProductqnt.getText().toString();
-        paymentmethod = inputProductpaymentmethod.getText().toString();
-        delfee = inputProductdelfee.getText().toString();
-        deltime = inputProductdeltime.getText().toString();
+        ppaymentmethod = inputProductpaymentmethod.getText().toString();
+        pdelfee = inputProductdelfee.getText().toString();
+        pdeltime = inputProductdeltime.getText().toString();
 
-        if (imageUri == null) {
+        if (pimageUri == null) {
 
             Toast.makeText(this, "Product image is mandatory", Toast.LENGTH_SHORT).show();
-        } else if (TextUtils.isEmpty(description)) {
+        } else if (TextUtils.isEmpty(pdescription)) {
 
             Toast.makeText(this, "Please write product description", Toast.LENGTH_SHORT).show();
 
 
-        } else if (TextUtils.isEmpty(price)) {
+        } else if (TextUtils.isEmpty(pprice)) {
 
             Toast.makeText(this, "Please write product price", Toast.LENGTH_SHORT).show();
 
@@ -148,15 +148,15 @@ public class AdminAddProductsActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Please write product brand", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(delfee)) {
+        else if (TextUtils.isEmpty(pdelfee)) {
 
             Toast.makeText(this, "Please write product delivery fee", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(deltime)) {
+        else if (TextUtils.isEmpty(pdeltime)) {
 
             Toast.makeText(this, "Please write product delivery time", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(paymentmethod)) {
+        else if (TextUtils.isEmpty(ppaymentmethod)) {
 
             Toast.makeText(this, "Please write product payment method ", Toast.LENGTH_SHORT).show();
         }
@@ -180,15 +180,15 @@ public class AdminAddProductsActivity extends AppCompatActivity {
         Calendar calender = Calendar.getInstance();
 
         SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd,yyyy");
-        saveCurrentDate = currentDate.format(calender.getTime());
+        psaveCurrentDate = currentDate.format(calender.getTime());
 
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-        saveCurrentTime = currentTime.format(calender.getTime());
+        psaveCurrentTime = currentTime.format(calender.getTime());
 
-        productRandomKey = saveCurrentDate + saveCurrentTime;
+        pproductRandomKey = psaveCurrentDate + psaveCurrentTime;
 
-        final StorageReference filePath = productImagesRef.child(imageUri.getLastPathSegment() + productRandomKey + ".jpg");
-        final UploadTask uploadTask = filePath.putFile(imageUri);
+        final StorageReference filePath = productImagesRef.child(pimageUri.getLastPathSegment() + pproductRandomKey + ".jpg");
+        final UploadTask uploadTask = filePath.putFile(pimageUri);
 
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
@@ -210,7 +210,7 @@ public class AdminAddProductsActivity extends AppCompatActivity {
 
                         }
 
-                        downLoadImageUrl = filePath.getDownloadUrl().toString();
+                        pdownLoadImageUrl = filePath.getDownloadUrl().toString();
                         return  filePath.getDownloadUrl();
                     }
                 }).addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -218,7 +218,7 @@ public class AdminAddProductsActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Uri> task) {
 
                         if (task.isSuccessful()){
-                            downLoadImageUrl = task.getResult().toString();
+                            pdownLoadImageUrl = task.getResult().toString();
                             Toast.makeText(AdminAddProductsActivity.this, "got the Product image Url Successfully", Toast.LENGTH_SHORT).show();
 
                             saveProductInfoToDatabase();
@@ -235,19 +235,19 @@ public class AdminAddProductsActivity extends AppCompatActivity {
     private void saveProductInfoToDatabase() {
 
         HashMap<String, Object> productMap  = new HashMap<>();
-        productMap.put("pid" , productRandomKey);
-        productMap.put("date" , saveCurrentDate);
-        productMap.put("time" , saveCurrentTime);
-        productMap.put("description" , description);
-        productMap.put("image" , downLoadImageUrl);
-        productMap.put("category" , categoryName);
-        productMap.put("price" , price);
+        productMap.put("pid" , pproductRandomKey);
+        productMap.put("pdate" , psaveCurrentDate);
+        productMap.put("ptime" , psaveCurrentTime);
+        productMap.put("pdescription" , pdescription);
+        productMap.put("pimage" , pdownLoadImageUrl);
+        productMap.put("pcategory" , pcategoryName);
+        productMap.put("pprice" , pprice);
         productMap.put("pname" , pname);
         productMap.put("pqnt" , pqnt);
         productMap.put("pbrand" , pbrand);
-        productMap.put("payment_method" , paymentmethod);
-        productMap.put("delivery_fee" , delfee);
-        productMap.put("delovery_time" , deltime);
+        productMap.put("ppayment_method" , ppaymentmethod);
+        productMap.put("pdelivery_fee" , pdelfee);
+        productMap.put("pdelovery_time" , pdeltime);
 
         productsRef.child(pname).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

@@ -35,8 +35,8 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Button nextProcessBtn;
-    private TextView txtTotalAmount, txtMsg1 ;
-    private int overTotalPrice = 0;
+    private TextView txtTotalPrice, txtMsg1 ,txtTotalShipped ,txtTotalAmount  ;
+    private int overTotalAmount = 0;
     private ImageView closeTextBtn;
 
     @Override
@@ -59,22 +59,26 @@ public class CartActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         nextProcessBtn = (Button) findViewById(R.id.next_process_btn);
-        txtTotalAmount = (TextView) findViewById(R.id.total_price);
+        txtTotalPrice = (TextView) findViewById(R.id.total_price);
+        txtTotalShipped = (TextView) findViewById(R.id.shipped_price);
+        txtTotalAmount = (TextView) findViewById(R.id.total_amount);
         txtMsg1 = (TextView) findViewById(R.id.msg1);
+
+
 
         nextProcessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 try {
-                    txtTotalAmount.setText("Total Price = " + String.valueOf(overTotalPrice));
+                    txtTotalAmount.setText("Total Amount = " + String.valueOf(overTotalAmount));
 
                 } catch (NumberFormatException e){
                     return;
                 }
 //                txtTotalAmount.setText("Total Price = R" + String.valueOf(overTotalPrice));
                 Intent intent = new Intent(CartActivity.this,PaymentActivity.class);
-                intent.putExtra("Total Price",String.valueOf(overTotalPrice));
+                intent.putExtra("Total Amount",String.valueOf(overTotalAmount));
                 startActivity(intent);
                 finish();
             }
@@ -85,7 +89,7 @@ public class CartActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        overTotalPrice=0;
+        overTotalAmount=0;
     }
 
     @Override
@@ -109,10 +113,15 @@ public class CartActivity extends AppCompatActivity {
                             cartViewHolder.txtProductQuantity.setText("Quantity = " + model.getQuantity());
                             cartViewHolder.txtProductPrice.setText("Price = " + model.getPrice() + " $");
                             cartViewHolder.txtProductName.setText("Name: " + model.getPname());
+                            cartViewHolder.txtProductBrand.setText("Brand " + model.getBrand());
+                            cartViewHolder.txtProductTime.setText("Time: " + model.getTime());
+                            cartViewHolder.txtProductDate.setText("Date: " + model.getDate());
 
 
-                            int oneTypeTotalProduct = (Integer.valueOf(model.getPrice())) * Integer.valueOf(model.getQuantity());
-                            overTotalPrice = overTotalPrice + oneTypeTotalProduct;
+
+                            int oneTypeTotalPrice = (Integer.valueOf(model.getPrice())) * Integer.valueOf(model.getQuantity());
+                            int oneTypeTotalShipped = (Integer.valueOf(model.getDeliveryfee())) ;
+                            overTotalAmount = oneTypeTotalShipped + oneTypeTotalPrice;
                         } catch(NumberFormatException e){
                             return;
                         }

@@ -70,8 +70,8 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cart_list"
-                android:layout_width="414dp"
-                android:layout_height="400dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_above="@+id/next_process_btn"
                 android:layout_below="@+id/mycart"
                 android:layout_marginBottom="29dp"

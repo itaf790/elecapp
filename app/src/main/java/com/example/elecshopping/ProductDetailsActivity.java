@@ -1,20 +1,32 @@
 package com.example.elecshopping;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.LinearLayoutCompat;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
 import com.example.elecshopping.Model.Products;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +49,15 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private TextView productPrice, productDescription,productName , deliverytime, deliveryfee, paymentmethod, productqnt ;
     private String productID = "", state = "Normal";
 
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private DatabaseReference mUserDatabase = FirebaseDatabase.getInstance().getReference();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
+
+    private Context mContext;
+    private Activity mActivity;
+    private RelativeLayout mRelativeLayout;
+    private PopupWindow mPopupWindow;
+
 
 
     @Override
@@ -53,22 +74,23 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
         productID = getIntent().getStringExtra("pid");
+
+
+
 
        addToCartButton = (Button) findViewById(R.id.pd_add_to_cart_button);
         numberButton = (ElegantNumberButton) findViewById(R.id.number_btn);
         productImage = (ImageView) findViewById(R.id.product_image_details);
-        productPrice = (TextView) findViewById(R.id.product_price);
-        productDescription = (TextView) findViewById(R.id.product_description);
-        productqnt = (TextView) findViewById(R.id.product_qnt);
-        deliveryfee = (TextView) findViewById(R.id.delivery_fee);
-       deliverytime = (TextView) findViewById(R.id.delivery_time);
-        paymentmethod = (TextView) findViewById(R.id.payment_method);
+        productName = (TextView) findViewById(R.id.product_name_details);
+        productPrice = (TextView) findViewById(R.id.product_price_details);
+        productDescription = (TextView) findViewById(R.id.product_description_details);
+        productqnt = (TextView) findViewById(R.id.product_qnt_details);
+        deliveryfee = (TextView) findViewById(R.id.delivery_fee_details);
+        deliverytime = (TextView) findViewById(R.id.delivery_time_details);
+        paymentmethod = (TextView) findViewById(R.id.payment_method_details);
 
 
-        productID=getIntent().getStringExtra("pid");
 
 
         getProductDetails(productID);
@@ -92,10 +114,16 @@ public class ProductDetailsActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        checkOrderState();
+     //   checkOrderState();
     }
 
     private void addingToCartList() {
+
+        checkifuserlogin();
+
+
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
         String saveCurrentTime,saveCurrentDate;
         Calendar calForDate =  Calendar.getInstance();
         SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
@@ -107,6 +135,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
       final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("Cart List");
 
+
             final HashMap<String, Object> cartMap = new HashMap<>();
             cartMap.put("pid",productID);
             cartMap.put("pname",productName.getText().toString());
@@ -114,16 +143,19 @@ public class ProductDetailsActivity extends AppCompatActivity {
             cartMap.put("pdate",saveCurrentDate);
             cartMap.put("ptime",saveCurrentTime);
             cartMap.put("pquantity",numberButton.getNumber());
-        cartMap.put("ppayment_method",paymentmethod.getText().toString());
-        cartMap.put("pdelivery_fee",deliveryfee.getText().toString());
-        cartMap.put("pdelivery_time",deliverytime.getText().toString());
+            cartMap.put("ppayment_method",paymentmethod.getText().toString());
+            cartMap.put("pdelivery_fee",deliveryfee.getText().toString());
+            cartMap.put("pdelivery_time",deliverytime.getText().toString());
             cartMap.put("discount","");
+
 
             cartListRef.child("User View").child(Prevelent.currentonlineusers.getEmail())
                     .child("Products").child(productID).updateChildren(cartMap)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
+
+
                             if (task.isSuccessful()) {
                                 cartListRef.child("Admin View").child(Prevelent.currentonlineusers.getEmail()).child("Products")
                                         .child(productID).updateChildren(cartMap)
@@ -147,26 +179,34 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
         }
 
+    private void checkifuserlogin() {
 
+        if (currentUser==null){
 
+            Toast.makeText(getBaseContext(), "You are not Logged In ", Toast.LENGTH_LONG).show();
 
+        }
+    }
 
 
     private void getProductDetails(String productID) {
+
+
         final DatabaseReference productsRef= FirebaseDatabase.getInstance().getReference().child("Products");
+
         productsRef.child(productID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                Log.d("sandyloging","lllllllllllllllllllllllllllllllllll");
                 if (dataSnapshot.exists()){
                     Products products = dataSnapshot.getValue(Products.class);
-
                     productName.setText(products.getPname());
                     productqnt.setText(products.getPqnt());
-                   deliveryfee.setText(products.getPdelivfee());
-                   deliverytime.setText(products.getPtime());
-                   paymentmethod.setText(products.getPpaymentmethod());
-                    productPrice.setText(products.getPprice());
+                    deliveryfee.setText(products.getPdelivfee());
+                    deliverytime.setText(products.getPtime());
+                    paymentmethod.setText(products.getPpaymentmethod());
+                    productPrice.setText(products.getPprice() );
                     productDescription.setText(products.getPdescription());
                     Picasso.get().load(products.getPimage()).into(productImage);
 
@@ -183,41 +223,46 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
     private void checkOrderState(){
         final DatabaseReference ordersRef= FirebaseDatabase.getInstance().getReference().child("AdminOrders").child(Prevelent.currentonlineusers.getEmail());
-               ordersRef.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange( DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.exists()){
+        ordersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange( DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
 
 
-                           String shippingState = (String) dataSnapshot.child("state").getValue();
+                    String shippingState = (String) dataSnapshot.child("state").getValue();
 
-                                   if (shippingState != null) {
-                                       if (shippingState.equals("shipped")) {
+                    if (shippingState != null) {
+                        if (shippingState.equals("shipped")) {
 
-                                           state = "Order Shipped";
-
-
-                                       } else if (shippingState.equals("not shipped")) {
-
-                                           state = "Order Placed";
+                            state = "Order Shipped";
 
 
-                                       }
+                        } else if (shippingState.equals("not shipped")) {
 
-                                   }
+                            state = "Order Placed";
+
 
                         }
 
-                   }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
-                });
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
+
+
 
 }

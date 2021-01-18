@@ -72,8 +72,8 @@
                         android:text="Payment method"
                         android:textColor="@color/black" />
 
-                    <EditText
-                        android:id="@+id/payment_method"
+                    <TextView
+                        android:id="@+id/payment_method_details"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -97,9 +97,9 @@
                         android:textColor="@color/black"
                         android:text="Delivery fee" />
 
-                    <EditText
+                    <TextView
                         android:layout_width="0dp"
-                        android:id="@+id/delivery_fee"
+                        android:id="@+id/delivery_fee_details"
                         android:layout_weight="1"
 
                         android:gravity="center"
@@ -123,8 +123,8 @@
                         android:padding="15dip"
                         android:text="Delivery time" />
 
-                    <EditText
-                        android:id="@+id/delivery_time"
+                    <TextView
+                        android:id="@+id/delivery_time_details"
                         android:layout_width="0dp"
                         android:layout_weight="1"
 
@@ -148,8 +148,8 @@
                         android:padding="15dip"
                         android:text="Product name" />
 
-                    <EditText
-                        android:id="@+id/product_name"
+                    <TextView
+                        android:id="@+id/product_name_details"
                         android:layout_width="0dp"
                         android:layout_weight="1"
 
@@ -174,8 +174,8 @@
                         android:id="@+id/txtproductprice"
                         android:textColor="@color/black"/>
 
-                    <EditText
-                        android:id="@+id/product_price"
+                    <TextView
+                        android:id="@+id/product_price_details"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -198,8 +198,8 @@
                         android:id="@+id/txtproductqnt"
                         android:textColor="@color/black"/>
 
-                    <EditText
-                        android:id="@+id/product_qnt"
+                    <TextView
+                        android:id="@+id/product_qnt_details"
                         android:layout_width="0dp"
                         android:layout_weight="1"
 
@@ -224,8 +224,8 @@
                         android:id="@+id/txtproductbrand"
                         android:textColor="@color/black"/>
 
-                    <EditText
-                        android:id="@+id/product_brand"
+                    <TextView
+                        android:id="@+id/product_brand_details"
                         android:layout_width="0dp"
                         android:layout_weight="1"
 
@@ -250,8 +250,8 @@
                         android:id="@+id/txtdescription"
                         android:textColor="@color/black"/>
 
-                    <EditText
-                        android:id="@+id/product_description"
+                    <TextView
+                        android:id="@+id/product_description_details"
                         android:layout_width="0dp"
                         android:layout_weight="1"
 

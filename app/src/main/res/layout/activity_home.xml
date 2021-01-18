@@ -22,24 +22,24 @@
             android:textSize="25dp"
             android:layout_marginTop="12dp"/>
 
-        <ImageView
-            android:id="@+id/person"
-            android:layout_width="30dp"
-            android:layout_height="44dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="10dp"
+    <ImageView
+        android:id="@+id/person"
+        android:layout_width="30dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
 
-            android:layout_toStartOf="@id/elecshopping"
-            android:src="@drawable/ic_baseline_person_add_24"></ImageView>
+        android:layout_toStartOf="@id/elecshopping"
+        android:src="@drawable/ic_baseline_person_add_24" />
 
-        <ImageView
-            android:id="@+id/language"
-            android:layout_width="25dp"
-            android:layout_height="44dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="35dp"
-            android:layout_toEndOf="@id/elecshopping"
-            android:src="@drawable/ic_baseline_language_24"></ImageView>
+    <ImageView
+        android:id="@+id/language"
+        android:layout_width="25dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="35dp"
+        android:layout_toEndOf="@id/elecshopping"
+        android:src="@drawable/ic_baseline_language_24" />
 
 
     <com.synnapps.carouselview.CarouselView
@@ -62,34 +62,33 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="477dp"
-            android:layout_below="@id/carouselView">
+            android:layout_height="wrap_content"
+            android:layout_below="@id/carouselView"
+            android:id="@+id/scroll">
 
-            <TableLayout
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_menu"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/recycler_menu"
-                    android:backgroundTint="#FFFCF8"/>
-                
+                    android:backgroundTint="#FFFCF8" />
 
-
-
-            </TableLayout>
+            </LinearLayout>
         </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="0dp"
-        android:background="#E9DDDD"
-        android:textSize="@dimen/design_bottom_navigation_text_size"
+        android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
+        android:background="#E9DDDD"
+        android:fitsSystemWindows="true"
+        android:textSize="@dimen/design_bottom_navigation_text_size"
         app:menu="@menu/bottom_nav_menu" />
 
 </RelativeLayout>

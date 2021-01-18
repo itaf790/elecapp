@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -103,8 +104,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_home);
 
         progressDialog = new ProgressDialog(HomeActivity.this);
-        progressDialog.setMessage("Loading Images From Firebase.");
-        progressDialog.show();
+
 
         person = (ImageView) findViewById(R.id.person);
         mAuth = FirebaseAuth.getInstance();
@@ -127,9 +127,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
         Paper.init(this);
-
         recyclerView = findViewById(R.id.recycler_menu);
-        recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -158,14 +156,10 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         person.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 // Initialize a new instance of LayoutInflater service
                 LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
-
                 // Inflate the custom layout/view
                 View customView = inflater.inflate(R.layout.activity_user_login_register, null);
-
                 // Initialize a new instance of popup window
                 mPopupWindow = new PopupWindow(
                         customView,
@@ -230,9 +224,16 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         FirebaseRecyclerOptions<Products> options=
                 new FirebaseRecyclerOptions.Builder<Products>()
                         .setQuery(ProductsRef, Products.class).build();
-
-        FirebaseRecyclerAdapter<Products, ProductViewHolder>adapter=
+//// lhun bfut
+        FirebaseRecyclerAdapter adapter=
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+                    @Override
+                    public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext())
+                                .inflate(R.layout.product_items_layout, parent, false);
+                        return new ProductViewHolder(view);
+
+                    }
                     @Override
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
 
@@ -245,8 +246,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                             @Override
                             public void onClick(View v) {
 
-                                if (type.equals("Admin")){
-
+                                if (type.equals("Admins")){
                                     Intent intent = new Intent(HomeActivity.this, AdminMaintainProductsActivity.class);
                                     intent.putExtra("pid", model.getPid());
                                     startActivity(intent);
@@ -264,14 +264,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
                     }
 
-                    @NonNull
-                    @Override
-                    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout,parent, false);
-                        ProductViewHolder holder= new ProductViewHolder(view);
-                        return holder;
 
-                    }
                 };
 
         recyclerView.setAdapter(adapter);

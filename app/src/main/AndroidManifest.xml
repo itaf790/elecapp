@@ -3,6 +3,7 @@
     package="com.example.elecshopping">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -35,6 +36,11 @@
         <activity
             android:name=".Admin.AdminDelivaryFeeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity
+            android:name=".ProductDetailsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".ForgetPaswwordActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
