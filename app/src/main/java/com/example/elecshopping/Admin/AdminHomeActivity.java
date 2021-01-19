@@ -6,10 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 
-import com.example.elecshopping.LoginActivity;
 import com.example.elecshopping.MainActivity;
 import com.example.elecshopping.R;
 
@@ -17,7 +14,8 @@ public class AdminHomeActivity extends AppCompatActivity {
 
 
     private Button exchangepolicy , returnspolicy, deliverytime , deliveryfee
-            ,paymentmethod , logout , addcategory , addproducts;
+            ,paymentmethod , logout , addcategory , addproducts , maintan_item
+            , show_orders;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +31,8 @@ public class AdminHomeActivity extends AppCompatActivity {
         logout= (Button)findViewById(R.id.adminlogout);
         addcategory= (Button)findViewById(R.id.add_new_category);
         addproducts= (Button)findViewById(R.id.add_new_item);
+        maintan_item= (Button)findViewById(R.id.maintan_item);
+        show_orders =(Button)findViewById(R.id.show_orders);
 
 
 
@@ -41,6 +41,23 @@ public class AdminHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(AdminHomeActivity.this, AdminAddProductsActivity.class);
+                startActivity(intent);
+
+            }
+        });
+        show_orders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminHomeActivity.this, AdminCheckOrdersActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        maintan_item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminHomeActivity.this, AdminMaintainProductsActivity.class);
                 startActivity(intent);
 
             }

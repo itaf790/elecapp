@@ -50,7 +50,7 @@
 
 
             <ImageView
-                android:id="@+id/product_image"
+                android:id="@+id/product_image_mantain"
                 android:layout_width="380dp"
                 android:layout_height="190dp"
                 android:layout_gravity="center"
@@ -279,7 +279,7 @@
             </TableLayout>
 
             <Button
-                android:id="@+id/apply_changes_btn"
+                android:id="@+id/apply_changes_btn_mantain"
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/product_description_mantain"

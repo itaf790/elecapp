@@ -95,8 +95,6 @@ public class AdminDelivaryFeeActivity extends AppCompatActivity {
                 if (!(snapshot.child("Admin").child(fee).exists())) {
                     HashMap<String, Object> userdataMap= new HashMap<>();
                     userdataMap.put("Delivery_fee",fee);
-
-
                     RootRef.child("Admin").child("Policies").child("Delivery_fee").updateChildren(userdataMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

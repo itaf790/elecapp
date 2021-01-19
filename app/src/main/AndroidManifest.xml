@@ -11,10 +11,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true">
-        <activity android:name=".ExchangeAndReturnsActivity"
+        <activity android:name=".Admin.AdminUserProductsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity android:name=".SearchProductActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name=".Admin.AdminCheckOrdersActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".ExchangeAndReturnsActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".SearchProductActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".User.UserDeliveryTimeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -36,11 +43,9 @@
         <activity
             android:name=".Admin.AdminDelivaryFeeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
         <activity
             android:name=".ProductDetailsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
         <activity
             android:name=".ForgetPaswwordActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

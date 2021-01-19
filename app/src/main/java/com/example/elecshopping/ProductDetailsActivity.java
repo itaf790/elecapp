@@ -46,10 +46,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private Button addToCartButton;
     private ImageView productImage;
     private ElegantNumberButton numberButton;
-    private TextView productPrice, productDescription,productName , deliverytime, deliveryfee, paymentmethod, productqnt ;
+    private TextView productPrice, productDescription,productName , productDeliverytime, productDeliveryfee, productPaymentmethod, productQuantity , productBrand ;
     private String productID = "", state = "Normal";
 
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+   private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private DatabaseReference mUserDatabase = FirebaseDatabase.getInstance().getReference();
     FirebaseUser currentUser = mAuth.getCurrentUser();
 
@@ -74,23 +74,23 @@ public class ProductDetailsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+
         productID = getIntent().getStringExtra("pid");
 
-
-
-
-       addToCartButton = (Button) findViewById(R.id.pd_add_to_cart_button);
+        addToCartButton = (Button) findViewById(R.id.pd_add_to_cart_button);
         numberButton = (ElegantNumberButton) findViewById(R.id.number_btn);
         productImage = (ImageView) findViewById(R.id.product_image_details);
-        productName = (TextView) findViewById(R.id.product_name_details);
         productPrice = (TextView) findViewById(R.id.product_price_details);
         productDescription = (TextView) findViewById(R.id.product_description_details);
-        productqnt = (TextView) findViewById(R.id.product_qnt_details);
-        deliveryfee = (TextView) findViewById(R.id.delivery_fee_details);
-        deliverytime = (TextView) findViewById(R.id.delivery_time_details);
-        paymentmethod = (TextView) findViewById(R.id.payment_method_details);
+        productName = (TextView) findViewById(R.id.product_name_details);
+        productBrand = (TextView) findViewById(R.id.product_brand_details);
+        productDeliveryfee = (TextView) findViewById(R.id.delivery_fee_details);
+        productDeliverytime = (TextView) findViewById(R.id.delivery_time_details);
+        productQuantity = (TextView) findViewById(R.id.product_qnt_details);
+        productPaymentmethod= (TextView) findViewById(R.id.payment_method_details);
 
-
+        productID=getIntent().getStringExtra("pid");
 
 
         getProductDetails(productID);
@@ -114,16 +114,10 @@ public class ProductDetailsActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-     //   checkOrderState();
+       // checkOrderState();
     }
 
     private void addingToCartList() {
-
-        checkifuserlogin();
-
-
-
-        FirebaseUser currentUser = mAuth.getCurrentUser();
         String saveCurrentTime,saveCurrentDate;
         Calendar calForDate =  Calendar.getInstance();
         SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
@@ -133,82 +127,76 @@ public class ProductDetailsActivity extends AppCompatActivity {
         saveCurrentTime = currentTime.format(calForDate.getTime());
 
 
-      final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("Cart List");
+        final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("Cart List");
 
+        final HashMap<String,Object> cartMap = new HashMap<>();
+        cartMap.put("pid",productID);
+        cartMap.put("pname",productName.getText().toString());
+        cartMap.put("price",productPrice.getText().toString());
+        cartMap.put("payment_method",productPaymentmethod.getText().toString());
+        cartMap.put("delivery_time",productDeliverytime.getText().toString());
+        cartMap.put("delivery_fee",productDeliveryfee.getText().toString());
+        cartMap.put("brand",productBrand.getText().toString());
+        cartMap.put("pquantity",productQuantity.getText().toString());
+        cartMap.put("date",saveCurrentDate);
+        cartMap.put("time",saveCurrentTime);
+        cartMap.put("quantity",numberButton.getNumber());
+        cartMap.put("discount","");
 
-            final HashMap<String, Object> cartMap = new HashMap<>();
-            cartMap.put("pid",productID);
-            cartMap.put("pname",productName.getText().toString());
-            cartMap.put("pprice",productPrice.getText().toString());
-            cartMap.put("pdate",saveCurrentDate);
-            cartMap.put("ptime",saveCurrentTime);
-            cartMap.put("pquantity",numberButton.getNumber());
-            cartMap.put("ppayment_method",paymentmethod.getText().toString());
-            cartMap.put("pdelivery_fee",deliveryfee.getText().toString());
-            cartMap.put("pdelivery_time",deliverytime.getText().toString());
-            cartMap.put("discount","");
+        cartListRef.child("User View").child(Prevelent.currentonlineusers.getEmail())
+                .child("Products").child(productID).updateChildren(cartMap)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            cartListRef.child("Admin View").child(Prevelent.currentonlineusers.getEmail()).child("Products")
+                                    .child(productID).updateChildren(cartMap)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
 
-
-            cartListRef.child("User View").child(Prevelent.currentonlineusers.getEmail())
-                    .child("Products").child(productID).updateChildren(cartMap)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-
-
-                            if (task.isSuccessful()) {
-                                cartListRef.child("Admin View").child(Prevelent.currentonlineusers.getEmail()).child("Products")
-                                        .child(productID).updateChildren(cartMap)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-                                                    Toast.makeText(ProductDetailsActivity.this, "Added To Cart List", Toast.LENGTH_SHORT).show();
-                                                    Intent intent = new Intent(ProductDetailsActivity.this, HomeActivity.class);
-                                                    startActivity(intent);
-                                                }
+                                                Toast.makeText(ProductDetailsActivity.this, "Added To Cart List", Toast.LENGTH_SHORT).show();
+                                                Intent intent = new Intent(ProductDetailsActivity.this, HomeActivity.class);
+                                                startActivity(intent);
                                             }
-                                        });
-
-                            }
-
+                                        }
+                                    });
 
                         }
-                    });
 
 
-        }
+                    }
+                });
 
-    private void checkifuserlogin() {
 
-        if (currentUser==null){
+///////////////////////////////////////////delete user view
 
-            Toast.makeText(getBaseContext(), "You are not Logged In ", Toast.LENGTH_LONG).show();
-
-        }
     }
 
 
+
+
+
+
     private void getProductDetails(String productID) {
-
-
         final DatabaseReference productsRef= FirebaseDatabase.getInstance().getReference().child("Products");
-
         productsRef.child(productID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                Log.d("sandyloging","lllllllllllllllllllllllllllllllllll");
                 if (dataSnapshot.exists()){
                     Products products = dataSnapshot.getValue(Products.class);
+
                     productName.setText(products.getPname());
-                    productqnt.setText(products.getPqnt());
-                    deliveryfee.setText(products.getPdelivfee());
-                    deliverytime.setText(products.getPtime());
-                    paymentmethod.setText(products.getPpaymentmethod());
-                    productPrice.setText(products.getPprice() );
-                    productDescription.setText(products.getPdescription());
-                    Picasso.get().load(products.getPimage()).into(productImage);
+                    productPaymentmethod.setText(products.getPayment_method());
+                    productDeliveryfee.setText(products.getDelivery_fee());
+                    productDeliverytime.setText(products.getDelivery_time());
+                    productBrand.setText(products.getBrand());
+                    productQuantity.setText(products.getPquantity());
+                    productPrice.setText(products.getPrice());
+                    productDescription.setText(products.getDescription());
+                    Picasso.get().load(products.getImage()).into(productImage);
 
 
 
@@ -223,9 +211,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
     private void checkOrderState(){
         final DatabaseReference ordersRef= FirebaseDatabase.getInstance().getReference().child("AdminOrders").child(Prevelent.currentonlineusers.getEmail());
         ordersRef.addValueEventListener(new ValueEventListener() {
@@ -262,7 +247,5 @@ public class ProductDetailsActivity extends AppCompatActivity {
         });
 
     }
-
-
 
 }

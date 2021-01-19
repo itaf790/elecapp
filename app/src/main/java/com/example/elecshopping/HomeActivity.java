@@ -224,7 +224,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         FirebaseRecyclerOptions<Products> options=
                 new FirebaseRecyclerOptions.Builder<Products>()
                         .setQuery(ProductsRef, Products.class).build();
-//// lhun bfut
         FirebaseRecyclerAdapter adapter=
                 new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
                     @Override
@@ -238,9 +237,9 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull final Products model) {
 
                         holder.txtProductName.setText(model.getPname());
-                        holder.txtProductDesc.setText(model.getPdescription());
-                        holder.txtProductPrice.setText("Price = " +model.getPprice() +"$");
-                        Picasso.get().load(model.getPimage()).into(holder.imageView);
+                        holder.txtProductDesc.setText(model.getDescription());
+                        holder.txtProductPrice.setText("Price = " +model.getPrice() +"$");
+                        Picasso.get().load(model.getImage()).into(holder.imageView);
 
                         holder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -288,10 +287,10 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 item.setChecked (true);
                 break;
 
-            case R.id.navigation_myaccount:
-               // Intent intentindex = new Intent(HomeActivity.this, IndexActivity.class);
-               // startActivity(intentindex);
-               // item.setChecked (true);
+            case R.id.navigation_cart:
+                Intent intentcart = new Intent(HomeActivity.this, CartActivity.class);
+               startActivity(intentcart);
+               item.setChecked (true);
                 break;
 
             case R.id.navigation_index:
