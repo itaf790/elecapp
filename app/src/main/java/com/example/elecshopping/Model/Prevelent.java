@@ -1,4 +1,4 @@
-package com.example.elecshopping;
+package com.example.elecshopping.Model;
 
 import com.example.elecshopping.Model.Users;
 

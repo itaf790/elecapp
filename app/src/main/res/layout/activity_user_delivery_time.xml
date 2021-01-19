@@ -15,6 +15,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="31dp"
+        android:layout_marginTop="40dp"
         android:src="@drawable/back"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="39dp"
@@ -24,6 +25,7 @@
         android:id="@+id/text"
         android:layout_width="256dp"
         android:layout_height="50dp"
+        android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="false"
         android:layout_marginEnd="76dp"
@@ -46,6 +48,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="text "
+        android:textSize="25dp"
+        android:textColor="@color/black"
         android:layout_marginStart="3dp"></TextView>
 
 

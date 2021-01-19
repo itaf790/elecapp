@@ -48,6 +48,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="text "
+        android:textSize="25dp"
+        android:textColor="@color/black"
         android:layout_marginStart="3dp"></TextView>
 
 </RelativeLayout>

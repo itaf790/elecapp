@@ -14,6 +14,22 @@
         <activity android:name=".Admin.AdminUserProductsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
+        <activity android:name=".PaymentActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity android:name=".CartActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity android:name=".CreditcardActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity android:name=".RecivedActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+        <activity android:name=".IndexActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+
         <activity android:name=".Admin.AdminCheckOrdersActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
@@ -28,9 +44,8 @@
         <activity
             android:name=".User.UserDeliveryFeeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".IndexActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
+
         <activity
             android:name=".Admin.AdminAddCategoryActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
@@ -88,9 +103,7 @@
         <activity
             android:name=".Admin.AdminloginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".CartActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+
         <activity
             android:name=".HomeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

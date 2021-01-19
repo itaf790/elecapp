@@ -102,7 +102,7 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:text="confirm"
-        android:background="@drawable/inputs"
+        android:background="@drawable/buttons"
         android:textColor="#292626"
         android:textSize="20dp"
         android:layout_marginTop="500dp"

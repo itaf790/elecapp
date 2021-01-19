@@ -11,8 +11,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.elecshopping.Model.Prevelent;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,6 +30,9 @@ public class RecivedActivity extends AppCompatActivity {
     private EditText nameEditText, phoneEditText, addressEditText, cityEditText;
     private Button confirmOrderBtn;
     private ImageView closeTextBtn;
+
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    final String uid = currentUser.getUid();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +96,7 @@ public class RecivedActivity extends AppCompatActivity {
 
 
         final DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference().child("AdminOrders")
-                .child(Prevelent.currentonlineusers.getEmail());
+                .child(uid);
         HashMap<String, Object> ordersMap = new HashMap<>();
         ordersMap.put("name",nameEditText.getText().toString());
         ordersMap.put("phone",phoneEditText.getText().toString());

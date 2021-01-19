@@ -1,6 +1,7 @@
 package com.example.elecshopping;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -127,6 +128,8 @@ public class registerActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     mRegProgress.dismiss();
                                     Toast.makeText(registerActivity.this,"Congratulations, your account has been created",Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(registerActivity.this, HomeActivity.class);
+                                    startActivity(intent);
 
                                 }
                             });

@@ -16,6 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="31dp"
         android:src="@drawable/back"
+        android:layout_marginTop="40dp"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="39dp"
         tools:layout_editor_absoluteY="6dp"></ImageView>
@@ -29,6 +30,7 @@
         android:layout_marginEnd="76dp"
         android:gravity="center|center_horizontal"
         android:text="Returns Policy"
+        android:layout_marginTop="40dp"
         android:textAlignment="center"
         android:textColor="#372E2E"
         android:textSize="25dp"
@@ -39,13 +41,15 @@
 
 
     <TextView
-        android:id="@+id/texttxtreturnspolicy"
+        android:id="@+id/txtreturnspolicy"
         android:layout_width="300dp"
         android:layout_height="match_parent"
         android:layout_below="@id/text"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="text "
+        android:textSize="25dp"
+        android:textColor="@color/black"
         android:layout_marginStart="3dp"></TextView>
 
 </RelativeLayout>

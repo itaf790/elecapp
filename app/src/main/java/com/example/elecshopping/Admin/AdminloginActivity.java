@@ -9,11 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.elecshopping.ForgetPaswwordActivity;
 import com.example.elecshopping.HomeActivity;
 import com.example.elecshopping.LoginActivity;
 import com.example.elecshopping.R;
@@ -30,6 +32,7 @@ public class AdminloginActivity extends AppCompatActivity {
     private FirebaseAuth auth;//Used for firebase authentication
     private ProgressDialog loadingBar;
     private String parentDbName="Admin";
+    private TextView forgotPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +56,26 @@ public class AdminloginActivity extends AppCompatActivity {
         AdminEmail = (EditText) findViewById(R.id.emailadmin);
         AdminPassword = (EditText) findViewById(R.id.passwordadmin);
         login = (Button) findViewById(R.id.loginadmin);
+        forgotPassword = (TextView) findViewById(R.id.forget);
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                resetPasswordUser();
+            }
+        });
+
+
+
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminloginActivity.this, ForgetPaswwordActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,4 +125,27 @@ public class AdminloginActivity extends AppCompatActivity {
             }
 
 
-        });}}
+        });}
+
+    private void resetPasswordUser() {
+        String email =AdminEmail.getText().toString().trim();
+        if(TextUtils.isEmpty(email))
+        {
+            Toast.makeText(AdminloginActivity.this,"Please enter your email ",Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(AdminloginActivity.this, "Reset Email sent", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+        }
+    }
+
+
+}

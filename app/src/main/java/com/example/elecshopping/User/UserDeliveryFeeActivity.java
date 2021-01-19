@@ -47,15 +47,20 @@ public class UserDeliveryFeeActivity extends AppCompatActivity {
 
         txtdeliverfee = (TextView) findViewById(R.id.txtdeliveryfee);
 
+        polID=getIntent().getStringExtra("pid");
+
+
+        getProductDetails(polID);
+
         final DatabaseReference productsRef= FirebaseDatabase.getInstance().getReference().child("Admin");
-        productsRef.child("Policies").addValueEventListener(new ValueEventListener() {
+        productsRef.child("Policies").child("Delivery_fee").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot userSnapshot: dataSnapshot.getChildren()){
+                if (dataSnapshot.exists()){
                     Policies policies = dataSnapshot.getValue(Policies.class);
                     Log.d("mmmmmmmmm","lllllllllllllllllllll");
-                    txtdeliverfee.setText(policies.getDeliveryfee());
+                    txtdeliverfee.setText(policies.getDelivery_fee());
 
                 }
 
@@ -69,5 +74,8 @@ public class UserDeliveryFeeActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    private void getProductDetails(String polID) {
     }
 }

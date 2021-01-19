@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +19,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.elecshopping.Model.Cart;
+import com.example.elecshopping.Model.Prevelent;
 import com.example.elecshopping.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -38,6 +42,9 @@ public class CartActivity extends AppCompatActivity {
     private TextView txtTotalPrice, txtMsg1 ,txtTotalShipped ,txtTotalAmount  ;
     private int overTotalAmount = 0;
     private ImageView closeTextBtn;
+
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+    final String uid = currentUser.getUid();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +65,7 @@ public class CartActivity extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        nextProcessBtn = (Button) findViewById(R.id.next_process_btn);
+        nextProcessBtn = (Button) findViewById(R.id.cart_next);
         txtTotalPrice = (TextView) findViewById(R.id.total_price);
         txtTotalShipped = (TextView) findViewById(R.id.shipped_price);
         txtTotalAmount = (TextView) findViewById(R.id.total_amount);
@@ -101,7 +108,7 @@ public class CartActivity extends AppCompatActivity {
         FirebaseRecyclerOptions<Cart> options =
                 new FirebaseRecyclerOptions.Builder<Cart>()
                         .setQuery(cartListRef.child("User View")
-                                .child(Prevelent.currentonlineusers.getEmail())
+                                .child(uid)
                                 .child("Products"),Cart.class).build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter =
@@ -151,7 +158,7 @@ public class CartActivity extends AppCompatActivity {
 
                                         if (i==1){
                                             cartListRef.child("User View")
-                                                    .child(Prevelent.currentonlineusers.getEmail())
+                                                    .child(uid)
                                                     .child("Products")
                                                     .child(model.getPid()).removeValue()
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -195,8 +202,9 @@ public class CartActivity extends AppCompatActivity {
 
     private void checkOrderState(){
         DatabaseReference ordersRef;
+        Log.d("mmmmmm","mmmmmmmmmmmmmmmmmmmmmmmmmm");
         ordersRef= FirebaseDatabase.getInstance().getReference().child("AdminOrders")
-                .child(Prevelent.currentonlineusers.getEmail());
+                .child(uid);
 
         ordersRef.addValueEventListener(new ValueEventListener() {
             @Override

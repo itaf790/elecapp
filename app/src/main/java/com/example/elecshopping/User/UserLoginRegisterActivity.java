@@ -14,6 +14,7 @@ import com.example.elecshopping.registerActivity;
 public class UserLoginRegisterActivity extends AppCompatActivity {
 
 
+
     private TextView login, register;
 
     @Override

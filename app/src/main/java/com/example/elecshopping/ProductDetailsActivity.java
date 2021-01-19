@@ -3,14 +3,9 @@ package com.example.elecshopping;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -19,9 +14,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.LinearLayoutCompat;
 
 import com.cepheuen.elegantnumberbutton.view.ElegantNumberButton;
+import com.example.elecshopping.Model.Prevelent;
 import com.example.elecshopping.Model.Products;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -114,7 +109,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-       // checkOrderState();
+        checkOrderState();
     }
 
     private void addingToCartList() {
@@ -140,16 +135,16 @@ public class ProductDetailsActivity extends AppCompatActivity {
         cartMap.put("pquantity",productQuantity.getText().toString());
         cartMap.put("date",saveCurrentDate);
         cartMap.put("time",saveCurrentTime);
-        cartMap.put("quantity",numberButton.getNumber());
+        cartMap.put("numberquantity",numberButton.getNumber());
         cartMap.put("discount","");
 
-        cartListRef.child("User View").child(Prevelent.currentonlineusers.getEmail())
+        cartListRef.child("User View")
                 .child("Products").child(productID).updateChildren(cartMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            cartListRef.child("Admin View").child(Prevelent.currentonlineusers.getEmail()).child("Products")
+                            cartListRef.child("Admin View").child("Products")
                                     .child(productID).updateChildren(cartMap)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override

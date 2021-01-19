@@ -2,65 +2,60 @@ package com.example.elecshopping.Model;
 
 public class Policies {
 
-    private String polid, deliveryfee, deliverytime, exchangepolicy, returnspolicy, paymentmethod;
+    public Policies(String delivery_fee, String delivery_time, String exchange_policy, String returns_policy, String payment_methods) {
+        Delivery_fee = delivery_fee;
+        Delivery_time = delivery_time;
+        Exchange_policy = exchange_policy;
+        Returns_policy = returns_policy;
+        Payment_methods = payment_methods;
+    }
+
+    private String Delivery_fee;
+    private String Delivery_time;
+    private String Exchange_policy;
+    private String Returns_policy;
+    private String Payment_methods;
 
     public Policies(){}
 
-    public Policies(String polid, String deliveryfee, String deliverytime, String exchangepolicy, String returnspolicy, String paymentmethod) {
-        this.polid = polid;
-        this.deliveryfee = deliveryfee;
-        this.deliverytime = deliverytime;
-        this.exchangepolicy = exchangepolicy;
-        this.returnspolicy = returnspolicy;
-        this.paymentmethod = paymentmethod;
+
+    public String getDelivery_fee() {
+        return Delivery_fee;
     }
 
-
-    public String getPolid() {
-        return polid;
+    public void setDelivery_fee(String delivery_fee) {
+        Delivery_fee = delivery_fee;
     }
 
-    public void setPolid(String polid) {
-        this.polid = polid;
+    public String getDelivery_time() {
+        return Delivery_time;
     }
 
-    public String getDeliveryfee() {
-        return deliveryfee;
+    public void setDelivery_time(String delivery_time) {
+        Delivery_time = delivery_time;
     }
 
-    public void setDeliveryfee(String deliveryfee) {
-        this.deliveryfee = deliveryfee;
+    public String getExchange_policy() {
+        return Exchange_policy;
     }
 
-    public String getDeliverytime() {
-        return deliverytime;
+    public void setExchange_policy(String exchange_policy) {
+        Exchange_policy = exchange_policy;
     }
 
-    public void setDeliverytime(String deliverytime) {
-        this.deliverytime = deliverytime;
+    public String getReturns_policy() {
+        return Returns_policy;
     }
 
-    public String getExchangepolicy() {
-        return exchangepolicy;
+    public void setReturns_policy(String returns_policy) {
+        Returns_policy = returns_policy;
     }
 
-    public void setExchangepolicy(String exchangepolicy) {
-        this.exchangepolicy = exchangepolicy;
+    public String getPayment_methods() {
+        return Payment_methods;
     }
 
-    public String getReturnspolicy() {
-        return returnspolicy;
-    }
-
-    public void setReturnspolicy(String returnspolicy) {
-        this.returnspolicy = returnspolicy;
-    }
-
-    public String getPaymentmethod() {
-        return paymentmethod;
-    }
-
-    public void setPaymentmethod(String paymentmethod) {
-        this.paymentmethod = paymentmethod;
+    public void setPayment_methods(String payment_methods) {
+        Payment_methods = payment_methods;
     }
 }

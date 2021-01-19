@@ -2,66 +2,66 @@ package com.example.elecshopping.Model;
 
 public class Users {
 
-    private String email,name,password,phone, address, lastname;
+    private String Email,Name,Password,Phone_number, Address, Last_name;
 
     public Users(){
 
     }
 
-    public Users(String email, String name, String password, String phone, String address, String lastname) {
-        this.email = email;
-        this.name = name;
-        this.password = password;
-        this.phone = phone;
-        this.address = address;
-        this.lastname = lastname;
+    public Users(String email, String name, String password, String phone_number, String address, String last_name) {
+        Email = email;
+        Name = name;
+        Password = password;
+        Phone_number = phone_number;
+        Address = address;
+        Last_name = last_name;
     }
 
     public String getEmail() {
-        return email;
+        return Email;
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        Email = email;
     }
 
     public String getName() {
-        return name;
+        return Name;
     }
 
     public void setName(String name) {
-        this.name = name;
+        Name = name;
     }
 
     public String getPassword() {
-        return password;
+        return Password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        Password = password;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhone_number() {
+        return Phone_number;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhone_number(String phone_number) {
+        Phone_number = phone_number;
     }
 
     public String getAddress() {
-        return address;
+        return Address;
     }
 
     public void setAddress(String address) {
-        this.address = address;
+        Address = address;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLast_name() {
+        return Last_name;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLast_name(String last_name) {
+        Last_name = last_name;
     }
 }
