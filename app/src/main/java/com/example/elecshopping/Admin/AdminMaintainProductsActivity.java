@@ -1,10 +1,13 @@
 package com.example.elecshopping.Admin;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,7 +42,6 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_maintain_products);
 
 
-
         closeTextBtn = (ImageView) findViewById(R.id.close);
         closeTextBtn.setOnClickListener(new View.OnClickListener()
         {
@@ -53,10 +55,6 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         price= findViewById(R.id.maintan_product_price);
         description= findViewById(R.id.maintan_product_description);
         name= findViewById(R.id.maintan_product_name);
-        brand= findViewById(R.id.maintan_product_brand);
-        deliveryfee= findViewById(R.id.maintan_deliveryfee);
-        deliverytime= findViewById(R.id.maintan_deliverytime);
-        paymentmethod= findViewById(R.id.maintan_paymentmethod);
         imageView= findViewById(R.id.product_image_mantain);
         deleteBtn= findViewById(R.id.delete_pdt_btn);
 
@@ -85,6 +83,67 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         productRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
+                AlertDialog.Builder builder
+                        = new AlertDialog
+                        .Builder(AdminMaintainProductsActivity.this);
+
+                // Set the message show for the Alert time
+                builder.setMessage("Are you sure to delete this product?");
+
+                // Set Alert Title
+                builder.setTitle("Delete product !");
+
+                // Set Cancelable false
+                // for when the user clicks on the outside
+                // the Dialog Box then it will remain show
+                builder.setCancelable(false);
+
+                // Set the positive button with yes name
+                // OnClickListener method is use of
+                // DialogInterface interface.
+
+                builder
+                        .setPositiveButton(
+                                "Yes",
+                                new DialogInterface
+                                        .OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog,
+                                                        int which)
+                                    {
+
+                                        // When the user click yes button
+                                        // then app will close
+                                        finish();
+                                    }
+                                });
+
+                // Set the Negative button with No name
+                // OnClickListener method is use
+                // of DialogInterface interface.
+                builder
+                        .setNegativeButton(
+                                "No",
+                                new DialogInterface
+                                        .OnClickListener() {
+
+                                    @Override
+                                    public void onClick(DialogInterface dialog,
+                                                        int which)
+                                    {
+
+                                        // If user click no
+                                        // then dialog box is canceled.
+                                        dialog.cancel();
+                                    }
+                                });
+
+                // Create the Alert dialog
+                AlertDialog alertDialog = builder.create();
+
+                // Show the Alert Dialog box
+                alertDialog.show();
                 Toast.makeText(AdminMaintainProductsActivity.this,"Product deleted successfully",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AdminMaintainProductsActivity.this, AdminHomeActivity.class);
                 startActivity(intent);
@@ -96,31 +155,9 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
     private void applyChanges() {
         String pName =name.getText().toString();
         String pPrice =price.getText().toString();
-        String pDeliverytime =deliverytime.getText().toString();
-        String pDeliveryfee =deliveryfee.getText().toString();
-        String pPaymentmethod =paymentmethod.getText().toString();
         String pDesc =description.getText().toString();
-        String pBrand =brand.getText().toString();
-
-
         if(pName.equals("")){
             Toast.makeText(this,"Enter Product Name",Toast.LENGTH_LONG).show();
-
-        }
-        if(pDeliveryfee.equals("")){
-            Toast.makeText(this,"Enter Product delivery fee",Toast.LENGTH_LONG).show();
-
-        }
-        if(pDeliverytime.equals("")){
-            Toast.makeText(this,"Enter Product Delivery time",Toast.LENGTH_LONG).show();
-
-        }
-        if(pPaymentmethod.equals("")){
-            Toast.makeText(this,"Enter Product Payement method",Toast.LENGTH_LONG).show();
-
-        }
-        if(pBrand.equals("")){
-            Toast.makeText(this,"Enter Product Brand",Toast.LENGTH_LONG).show();
 
         }
 
@@ -138,10 +175,6 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
             prodMap.put("pname",pName);
             prodMap.put("price",pPrice);
             prodMap.put("description",pDesc);
-            prodMap.put("payment_method",pPaymentmethod);
-            prodMap.put("delivery_fee",pDeliveryfee);
-            prodMap.put("delivery_time",pDeliverytime);
-            prodMap.put("brand",pBrand);
             productRef.updateChildren(prodMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -168,17 +201,9 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
                     String pName= dataSnapshot.child("pname").getValue().toString();
                     String pPrice= dataSnapshot.child("price").getValue().toString();
                     String pDescription= dataSnapshot.child("description").getValue().toString();
-                    String pPaymentmethod= dataSnapshot.child("payment_method").getValue().toString();
-                    String pDeliverytime= dataSnapshot.child("delivery_time").getValue().toString();
-                    String pDeliveryfee= dataSnapshot.child("delivery_fee").getValue().toString();
-                    String pBrand= dataSnapshot.child("brand").getValue().toString();
                     String pImage= dataSnapshot.child("image").getValue().toString();
 
                     name.setText(pName);
-                    brand.setText(pBrand);
-                    paymentmethod.setText(pPaymentmethod);
-                    deliverytime.setText(pDeliverytime);
-                    deliveryfee.setText(pDeliveryfee);
                     price.setText(pPrice);
                     description.setText(pDescription);
                     Picasso.get().load(pImage).into(imageView);

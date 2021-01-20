@@ -80,8 +80,9 @@ public class AdminloginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = AdminEmail.getText().toString().trim();
+                final String email = AdminEmail.getText().toString().trim();
                 String pwd = AdminPassword.getText().toString();
+
                 if(TextUtils.isEmpty(email))
                 {
                     Toast.makeText(AdminloginActivity.this,"Please enter email ",Toast.LENGTH_SHORT).show();
@@ -103,17 +104,20 @@ public class AdminloginActivity extends AppCompatActivity {
                                     if(task.isSuccessful())//If account login successful print message and send user to main Activity
                                     {
                                         sendToHomeActivity();
-                                        Toast.makeText(AdminloginActivity.this,"Welcome, Enjoy Shopping  ",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AdminloginActivity.this," welcome admin, you are logged in Succeessfully",Toast.LENGTH_SHORT).show();
                                         loadingBar.dismiss();
                                     }
+
                                     else//Print the error message incase of failure
                                     {
                                         String msg = task.getException().toString();
                                         loadingBar.dismiss();
-                                        Toast.makeText(AdminloginActivity.this, "Password is incorrect", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AdminloginActivity.this, "Wrong, Please try again", Toast.LENGTH_SHORT).show();
                                     }
                                 }
+
                             });
+
                 }
             }
 

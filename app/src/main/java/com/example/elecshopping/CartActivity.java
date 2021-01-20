@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import android.widget.Toast;
 
 import com.example.elecshopping.Model.Cart;
 import com.example.elecshopping.Model.Prevelent;
+import com.example.elecshopping.Model.Users;
 import com.example.elecshopping.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -33,6 +36,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import io.paperdb.Paper;
+
 public class CartActivity extends AppCompatActivity {
 
 
@@ -42,6 +47,7 @@ public class CartActivity extends AppCompatActivity {
     private TextView txtTotalPrice, txtMsg1 ,txtTotalShipped ,txtTotalAmount  ;
     private int overTotalAmount = 0;
     private ImageView closeTextBtn;
+    private ProgressDialog loadingBar;
 
     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
     final String uid = currentUser.getUid();
@@ -59,6 +65,8 @@ public class CartActivity extends AppCompatActivity {
                 finish();
             }
         });
+        loadingBar= new ProgressDialog(this);
+        Paper.init(this);
 
         recyclerView = findViewById(R.id.cart_list);
         recyclerView.setHasFixedSize(true);
@@ -103,6 +111,22 @@ public class CartActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         checkOrderState();
+
+        String UserPasswordKey= Paper.book().read(Prevelent.UserPasswordKey);
+
+        String UserEmailKey= Paper.book().read(Prevelent.UserEmailKey);
+
+        if (UserEmailKey!="" && UserPasswordKey!= ""){
+            if (!TextUtils.isEmpty(UserEmailKey) && !TextUtils.isEmpty(UserPasswordKey)){
+                AllowAccess(UserEmailKey,UserPasswordKey);
+
+                loadingBar.setTitle("Already Loggen in");
+                loadingBar.setMessage("please wait...");
+                loadingBar.setCanceledOnTouchOutside(false);
+                loadingBar.show();
+            }
+
+        }
 
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
         FirebaseRecyclerOptions<Cart> options =
@@ -239,6 +263,56 @@ public class CartActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+
+
+    private void AllowAccess( final String email,  final String password) {
+        final DatabaseReference RootRef;
+        RootRef= FirebaseDatabase.getInstance().getReference();
+
+        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.child("Users").child(email).exists()){
+                    Users usersData= snapshot.child("Users").child(email).getValue(Users.class);
+                    if (usersData.getEmail().equals(email))
+                    {
+                        if (usersData.getPassword().equals(password))
+                        {
+                            Toast.makeText(CartActivity.this, "Please wait, you are already looged in", Toast.LENGTH_SHORT).show();
+                            loadingBar.dismiss();
+
+                            Intent intent = new Intent(CartActivity.this, HomeActivity.class);
+                            Prevelent.currentonlineusers=usersData;
+                            startActivity(intent);
+                        }
+
+                        else {
+                            loadingBar.dismiss();
+                            Toast.makeText(CartActivity.this, "Password is incorrect", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+
+                }
+                else {
+
+                    Toast.makeText(CartActivity.this, "Account with this"+ email+"email do not exists", Toast.LENGTH_SHORT).show();
+                    loadingBar.dismiss();
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });

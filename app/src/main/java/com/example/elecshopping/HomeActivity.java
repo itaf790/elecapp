@@ -297,6 +297,13 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 Intent intent = new Intent(HomeActivity.this, IndexActivity.class);
                 startActivity(intent);
                 item.setChecked (true);
+                break;
+
+            case R.id.navigation_search:
+                Intent intentsearch = new Intent(HomeActivity.this, SearchProductActivity.class);
+                startActivity(intentsearch);
+                item.setChecked (true);
+
 
 
                 return true;
