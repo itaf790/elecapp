@@ -37,7 +37,7 @@ public class SearchProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_product);
-        searchBtn=findViewById(R.id.searchbtn);
+        searchBtn=findViewById(R.id.search_btn);
         closeTextBtn = (ImageView) findViewById(R.id.close);
         inputText=findViewById(R.id.search_product_name);
         searchList=findViewById(R.id.search_list);

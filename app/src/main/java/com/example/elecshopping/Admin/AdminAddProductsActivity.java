@@ -34,10 +34,10 @@ public class AdminAddProductsActivity extends AppCompatActivity {
 
 
 
-    private String categoryName, description, price, pname,saveCurrentDate, saveCurrentTime, brand , paymentmethod, deliverytime, deliveryfee, pquantity;
+    private String categoryName, description, price, pname,saveCurrentDate, saveCurrentTime, brand , paymentmethod, deliverytime, deliveryfee, pquantity, discount;
     private Button addNewProductButton;
     private ImageView inputProductImage;
-    private EditText inputProductName, inputProductDescription, inputProductPrice , inputProductbrand, inputProductpaymentmethod , inputProductdelfee, inputProductdeltime,inputProductquantity ;
+    private EditText inputProductName, inputProductDescription, inputProductPrice , inputProductbrand, inputProductpaymentmethod , inputProductdelfee, inputProductDiscount, inputProductdeltime,inputProductquantity ;
     private static final int GalleryPick = 1;
     private Uri imageUri;
     private String productRandomKey,downLoadImageUrl;
@@ -67,6 +67,7 @@ public class AdminAddProductsActivity extends AppCompatActivity {
         addNewProductButton = (Button) findViewById(R.id.adminadd_new_product);
         inputProductImage = (ImageView) findViewById(R.id.adminproduct_image);
         inputProductName = (EditText) findViewById(R.id.adminproduct_name);
+        inputProductDiscount = (EditText) findViewById(R.id.adminproduct_discount);
         inputProductDescription = (EditText) findViewById(R.id.adminproduct_description);
         inputProductPrice = (EditText) findViewById(R.id.adminproduct_price);
         inputProductbrand = (EditText) findViewById(R.id.adminproduct_brand);
@@ -126,6 +127,8 @@ public class AdminAddProductsActivity extends AppCompatActivity {
         paymentmethod= inputProductpaymentmethod.getText().toString();
         pquantity= inputProductquantity.getText().toString();
         brand= inputProductbrand.getText().toString();
+        discount= inputProductDiscount.getText().toString();
+
 
         if (imageUri == null) {
 
@@ -143,9 +146,32 @@ public class AdminAddProductsActivity extends AppCompatActivity {
         } else if (TextUtils.isEmpty(pname)) {
 
             Toast.makeText(this, "Please write product name", Toast.LENGTH_SHORT).show();
-
-
         }
+        else if (TextUtils.isEmpty(deliverytime)) {
+
+            Toast.makeText(this, "Please write product delivery time", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(deliveryfee)) {
+
+            Toast.makeText(this, "Please write product delivery fee", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(brand)) {
+
+            Toast.makeText(this, "Please write product brand", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(paymentmethod)) {
+
+            Toast.makeText(this, "Please write product payment method", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(discount)) {
+
+            Toast.makeText(this, "Please write product discount", Toast.LENGTH_SHORT).show();
+        }
+        else if (TextUtils.isEmpty(pquantity)) {
+
+            Toast.makeText(this, "Please write product quantity", Toast.LENGTH_SHORT).show();
+        }
+
 
         else{
             storeProductInformation();
@@ -230,6 +256,7 @@ public class AdminAddProductsActivity extends AppCompatActivity {
         productMap.put("delivery_fee" , deliveryfee);
         productMap.put("delivery_time" , deliverytime);
         productMap.put("brand" , brand);
+        productMap.put("discount" , discount);
 
         productsRef.child(productRandomKey).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {

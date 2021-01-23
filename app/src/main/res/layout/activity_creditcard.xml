@@ -57,9 +57,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="40dp"
         android:textSize="20dp"
-android:layout_centerHorizontal="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="57dp"
-        android:background="@drawable/inputs"
+        android:background="@drawable/buttons"
         android:text="Buy Now"
         android:textColor="#000000" />
 

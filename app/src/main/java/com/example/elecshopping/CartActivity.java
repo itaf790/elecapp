@@ -36,6 +36,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 import io.paperdb.Paper;
 
 public class CartActivity extends AppCompatActivity {
@@ -44,18 +46,27 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private Button nextProcessBtn;
-    private TextView txtTotalPrice, txtMsg1 ,txtTotalShipped ,txtTotalAmount  ;
-    private int overTotalAmount = 0;
+    private TextView txtMsg1 ,txtTotalAmount  ;
+    private int overTotalAmount = 0 , overtotal=0;
     private ImageView closeTextBtn;
     private ProgressDialog loadingBar;
+    private String OverTotalAmount = "";
 
-    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-    final String uid = currentUser.getUid();
+
+
+
+
+
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private DatabaseReference mUserDatabase = FirebaseDatabase.getInstance().getReference();
+    FirebaseUser currentUser = mAuth.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+
+
         closeTextBtn = (ImageView) findViewById(R.id.close);
         closeTextBtn.setOnClickListener(new View.OnClickListener()
         {
@@ -65,8 +76,7 @@ public class CartActivity extends AppCompatActivity {
                 finish();
             }
         });
-        loadingBar= new ProgressDialog(this);
-        Paper.init(this);
+
 
         recyclerView = findViewById(R.id.cart_list);
         recyclerView.setHasFixedSize(true);
@@ -74,23 +84,16 @@ public class CartActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         nextProcessBtn = (Button) findViewById(R.id.cart_next);
-        txtTotalPrice = (TextView) findViewById(R.id.total_price);
-        txtTotalShipped = (TextView) findViewById(R.id.shipped_price);
-        txtTotalAmount = (TextView) findViewById(R.id.total_amount);
+        txtTotalAmount = (TextView) findViewById(R.id.mycart);
         txtMsg1 = (TextView) findViewById(R.id.msg1);
-
-
 
         nextProcessBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                try {
-                    txtTotalAmount.setText("Total Amount = " + String.valueOf(overTotalAmount));
+                  //  txtTotalAmount.setText("Total Amount = " + String.valueOf(overTotalAmount));
 
-                } catch (NumberFormatException e){
-                    return;
-                }
+
 //                txtTotalAmount.setText("Total Price = R" + String.valueOf(overTotalPrice));
                 Intent intent = new Intent(CartActivity.this,PaymentActivity.class);
                 intent.putExtra("Total Amount",String.valueOf(overTotalAmount));
@@ -112,27 +115,11 @@ public class CartActivity extends AppCompatActivity {
         super.onStart();
         checkOrderState();
 
-        String UserPasswordKey= Paper.book().read(Prevelent.UserPasswordKey);
-
-        String UserEmailKey= Paper.book().read(Prevelent.UserEmailKey);
-
-        if (UserEmailKey!="" && UserPasswordKey!= ""){
-            if (!TextUtils.isEmpty(UserEmailKey) && !TextUtils.isEmpty(UserPasswordKey)){
-                AllowAccess(UserEmailKey,UserPasswordKey);
-
-                loadingBar.setTitle("Already Loggen in");
-                loadingBar.setMessage("please wait...");
-                loadingBar.setCanceledOnTouchOutside(false);
-                loadingBar.show();
-            }
-
-        }
-
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
         FirebaseRecyclerOptions<Cart> options =
                 new FirebaseRecyclerOptions.Builder<Cart>()
                         .setQuery(cartListRef.child("User View")
-                                .child(uid)
+                                .child(currentUser.getUid())
                                 .child("Products"),Cart.class).build();
 
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter =
@@ -141,18 +128,54 @@ public class CartActivity extends AppCompatActivity {
                     protected void onBindViewHolder(@NonNull CartViewHolder cartViewHolder, int position, @NonNull final Cart model) {
                         try {
 
-                            cartViewHolder.txtProductQuantity.setText("Quantity = " + model.getQuantity());
-                            cartViewHolder.txtProductPrice.setText("Price = " + model.getPrice() + " $");
-                            cartViewHolder.txtProductName.setText("Name: " + model.getPname());
-                            cartViewHolder.txtProductBrand.setText("Brand " + model.getBrand());
-                            cartViewHolder.txtProductTime.setText("Time: " + model.getTime());
-                            cartViewHolder.txtProductDate.setText("Date: " + model.getDate());
+                            cartViewHolder.txtProductQuantity.setText(" Product Quantity = " + model.getNumberquantity());
+                            cartViewHolder.txtProductPrice.setText("Product Price = $" + model.getPrice() + " $");
+                            cartViewHolder.txtProductName.setText(" Product Name: " + model.getPname());
+                            cartViewHolder.txtProductBrand.setText("Brand :  " + model.getBrand());
+                            cartViewHolder.txtProductTime.setText("Time: "+ model.getTime());
+                            cartViewHolder.txtProductDate.setText("Date:  "+ model.getDate());
+                            cartViewHolder.txtProductshipped.setText("Shipped Price =  $ "+ model.getDelivery_fee());
 
 
 
-                            int oneTypeTotalPrice = (Integer.valueOf(model.getPrice())) * Integer.valueOf(model.getQuantity());
-                            int oneTypeTotalShipped = (Integer.valueOf(model.getDeliveryfee())) ;
-                            overTotalAmount = oneTypeTotalShipped + oneTypeTotalPrice;
+                            int oneTypeTotalPrice = (Integer.valueOf(model.getPrice())) * Integer.valueOf(model.getNumberquantity());
+                            int oneTypeTotalShipped = (Integer.valueOf(model.getDelivery_fee())) ;
+                            overtotal = oneTypeTotalPrice + oneTypeTotalShipped;
+                            overTotalAmount = overTotalAmount + oneTypeTotalPrice +oneTypeTotalShipped;
+
+                            cartViewHolder.txtProducttotalprice.setText("Total Price =  $"+ oneTypeTotalPrice);
+                            cartViewHolder.txttotalamount.setText("Total Amount = $ "+ overtotal);
+                            txtTotalAmount.setText("Total Price = $" + overTotalAmount);
+
+////////////////////////////////////// this to put totalamount in firebase under cartlist
+                            final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("Cart List");
+
+                            final HashMap<String,Object> cartMap = new HashMap<>();
+                            cartMap.put("totalAmount", txtTotalAmount.getText().toString());
+                            cartListRef.child("User View").child(currentUser.getUid())
+                                    .child("totalAmount").updateChildren(cartMap)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                cartListRef.child("Admin View").child(currentUser.getUid()).child("totalAmount")
+                                                        .updateChildren(cartMap)
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if (task.isSuccessful()) {
+
+                                                                    Toast.makeText(CartActivity.this, "Total Price = $ "+ overTotalAmount, Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            }
+                                                        });
+
+                                            }
+
+
+                                        }
+                                    });
+
                         } catch(NumberFormatException e){
                             return;
                         }
@@ -182,7 +205,7 @@ public class CartActivity extends AppCompatActivity {
 
                                         if (i==1){
                                             cartListRef.child("User View")
-                                                    .child(uid)
+                                                    .child(currentUser.getUid())
                                                     .child("Products")
                                                     .child(model.getPid()).removeValue()
                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -226,9 +249,8 @@ public class CartActivity extends AppCompatActivity {
 
     private void checkOrderState(){
         DatabaseReference ordersRef;
-        Log.d("mmmmmm","mmmmmmmmmmmmmmmmmmmmmmmmmm");
-        ordersRef= FirebaseDatabase.getInstance().getReference().child("AdminOrders")
-                .child(uid);
+        ordersRef= FirebaseDatabase.getInstance().getReference().child("Orders")
+                .child(currentUser.getUid());
 
         ordersRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -263,56 +285,6 @@ public class CartActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-
-
-
-    private void AllowAccess( final String email,  final String password) {
-        final DatabaseReference RootRef;
-        RootRef= FirebaseDatabase.getInstance().getReference();
-
-        RootRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                if (snapshot.child("Users").child(email).exists()){
-                    Users usersData= snapshot.child("Users").child(email).getValue(Users.class);
-                    if (usersData.getEmail().equals(email))
-                    {
-                        if (usersData.getPassword().equals(password))
-                        {
-                            Toast.makeText(CartActivity.this, "Please wait, you are already looged in", Toast.LENGTH_SHORT).show();
-                            loadingBar.dismiss();
-
-                            Intent intent = new Intent(CartActivity.this, HomeActivity.class);
-                            Prevelent.currentonlineusers=usersData;
-                            startActivity(intent);
-                        }
-
-                        else {
-                            loadingBar.dismiss();
-                            Toast.makeText(CartActivity.this, "Password is incorrect", Toast.LENGTH_SHORT).show();
-                        }
-
-
-                    }
-
-                }
-                else {
-
-                    Toast.makeText(CartActivity.this, "Account with this"+ email+"email do not exists", Toast.LENGTH_SHORT).show();
-                    loadingBar.dismiss();
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
 
             }
         });

@@ -1,6 +1,7 @@
 package com.example.elecshopping;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,14 +27,18 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.elecshopping.Admin.AdminMaintainProductsActivity;
+import com.example.elecshopping.Admin.AdminloginActivity;
 import com.example.elecshopping.Model.Categories;
 import com.example.elecshopping.Model.Products;
 import com.example.elecshopping.ViewHolder.CategoryViewHolder;
 import com.example.elecshopping.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -65,7 +71,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
    // this for hide addperson in home activity
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
-    private ImageView person;
+    private ImageView person , language;
 
 
 
@@ -75,28 +81,22 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
         return super.getLayoutInflater();
     }
 
-
-
     /// this for addpesron
     private Context mContext;
     private Activity mActivity;
     private RelativeLayout mRelativeLayout;
     private PopupWindow mPopupWindow;
-    ;
-
 
     /// this for slide show
     private int[] mImages = new int[]{
-            R.drawable.apple,
-            R.drawable.elec,
-            R.drawable.back,
-            R.drawable.backm,
+            R.drawable.sli1,
+            R.drawable.sli2,
+            R.drawable.sli3,
+            R.drawable.sli4,
     };
 
-    ////
+    //// hay lt3ref navigation
     private BottomNavigationView bottomNavigationView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,20 +107,21 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
 
         person = (ImageView) findViewById(R.id.person);
+        language = (ImageView) findViewById(R.id.language);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         if ( currentUser!=null){
             person.setVisibility(View.GONE);
         }
         ///// hay ll navigatiom
-
         bottomNavigationView = findViewById (R.id.nav_view);
         setListeners ();
 
 
-        /// thif foe put categories in home
+        /// this for put categories in home
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+
         if (bundle != null) {
             type = getIntent().getExtras().get("Admin").toString();
         }
@@ -142,6 +143,47 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
             }
         });
+
+
+
+/// this to switch language
+        language.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CharSequence options[] = new CharSequence[]
+                            {
+
+                                    "Arabic",
+                                    "English"
+                            };
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+                    builder.setTitle("Language Options:");
+
+                    builder.setItems(options, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int i) {
+                            if (i==0){
+                             //   Intent intent = new Intent(HomeActivity.this,ProductDetailsActivity.class);
+                              //  intent.putExtra("pid",model.getPid());
+                                //startActivity(intent);
+                            }
+
+                            if (i==1){
+                                //Intent intent = new Intent(HomeActivity.this,ProductDetailsActivity.class);
+                                //  intent.putExtra("pid",model.getPid());
+                                //startActivity(intent);
+                                }
+
+                            }
+
+
+                    });
+                    builder.show();
+                }
+
+    });
+
 
 
         ///// this for login and register add person in discover app
@@ -245,7 +287,7 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                             @Override
                             public void onClick(View v) {
 
-                                if (type.equals("Admins")){
+                                if (type.equals("Admin")){
                                     Intent intent = new Intent(HomeActivity.this, AdminMaintainProductsActivity.class);
                                     intent.putExtra("pid", model.getPid());
                                     startActivity(intent);
@@ -288,9 +330,20 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
                 break;
 
             case R.id.navigation_cart:
-                Intent intentcart = new Intent(HomeActivity.this, CartActivity.class);
-               startActivity(intentcart);
-               item.setChecked (true);
+
+                mAuth = FirebaseAuth.getInstance();
+                currentUser = mAuth.getCurrentUser();
+                if ( currentUser!=null){
+
+                    Intent intentcart = new Intent(HomeActivity.this, CartActivity.class);
+                    startActivity(intentcart);
+                    item.setChecked (true);
+                }
+                else
+                    Toast.makeText(this, "You must first login or register ", Toast.LENGTH_SHORT).show();
+                    item.setChecked (true);
+
+
                 break;
 
             case R.id.navigation_index:

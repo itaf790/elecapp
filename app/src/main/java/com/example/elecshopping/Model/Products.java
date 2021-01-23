@@ -2,13 +2,13 @@ package com.example.elecshopping.Model;
 
 public class Products {
 
-    private String pname, description,price, image,category, date,pid,time , delivery_time , delivery_fee, payment_method , pquantity , brand;
+    private String pname, description,price, image,category, date,pid,time , delivery_time , delivery_fee, payment_method , pquantity , brand, totalAmount;
 
     public Products(){
 
     }
 
-    public Products(String pname, String description, String price, String image, String category, String date, String pid, String time, String delivery_time, String delivery_fee, String payment_method, String pquantity, String brand) {
+    public Products(String pname,String totalAmount, String description, String price, String image, String category, String date, String pid, String time, String delivery_time, String delivery_fee, String payment_method, String pquantity, String brand) {
         this.pname = pname;
         this.description = description;
         this.price = price;
@@ -22,6 +22,15 @@ public class Products {
         this.payment_method = payment_method;
         this.pquantity = pquantity;
         this.brand = brand;
+        this.totalAmount = totalAmount;
+    }
+
+    public String getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(String totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
     public String getPname() {

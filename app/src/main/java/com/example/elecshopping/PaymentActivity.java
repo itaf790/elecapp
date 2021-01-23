@@ -37,8 +37,6 @@ public class PaymentActivity extends AppCompatActivity {
         });
 
 
-        totalAmount = getIntent().getStringExtra("Total Price");
-        Toast.makeText(this, "Total Price = " + totalAmount, Toast.LENGTH_SHORT).show();
 
         Checkboxrecived = findViewById(R.id.recived);
         Checkboxcard = findViewById(R.id.credit_card);

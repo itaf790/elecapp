@@ -42,6 +42,8 @@
 
 
 
+
+
             <ImageView
                 android:id="@+id/product_image_details"
                 android:layout_width="380dp"
@@ -182,31 +184,6 @@
                         android:padding="15dip"
                         />
                 </TableRow>
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/inputs"
-                    android:layout_marginTop="10dp"
-                    >
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="15dip"
-                        android:text="product quantity"
-                        android:id="@+id/txtproductqnt"
-                        android:textColor="@color/black"/>
-
-                    <TextView
-                        android:id="@+id/product_qnt_details"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-
-                        android:gravity="center"
-                        android:padding="15dip"
-                         />
-                </TableRow>
 
                 <TableRow
                     android:layout_width="wrap_content"
@@ -260,33 +237,81 @@
                         />
                 </TableRow>
 
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputs"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+
+                        android:gravity="center"
+                        android:padding="15dip"
+                        android:text="Discount"
+                        android:id="@+id/txtdiscount"
+                        android:textColor="@color/black"/>
+
+                    <EditText
+                        android:id="@+id/product_discount"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+
+                        android:gravity="center"
+                        android:padding="15dip"
+                        />
+                </TableRow>
+
             </TableLayout>
 
 
-            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
-                android:id="@+id/number_btn"
-                android:layout_width="180dp"
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
+                android:textSize="18dp"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:shadowColor="@color/black"
+                android:layout_gravity="center"
+                android:visibility="visible"
+                />
 
-                android:elevation="6dp"
-                android:background="@drawable/buttons"
-                app:initialNumber="1"
-                app:textSize="15dp">
+            <TextView
+                android:id="@+id/textnumb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:shadowColor="@color/black"
+                android:layout_gravity="center"
+                android:text="Select a number of products..."
+                android:visibility="visible"
+                />
+            <NumberPicker
+                android:id="@+id/np"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv"
+                android:visibility="visible"
+                />
 
-            </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 
 
             <Button
                 android:id="@+id/pd_add_to_cart_button"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/number_btn"
+                android:layout_below="@id/np"
                 android:layout_centerInParent="true"
                 android:layout_gravity="center"
                 android:layout_margin="15dp"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/buttons"
                 android:text="Add to Cart"
                 android:textColor="#FFFFFF"

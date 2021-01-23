@@ -6,12 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.Toast;
 
+import com.example.elecshopping.Admin.AdminHomeActivity;
 import com.example.elecshopping.User.UserDeliveryFeeActivity;
 import com.example.elecshopping.User.UserDeliveryTimeActivity;
 import com.example.elecshopping.User.UserExchangeActivity;
 import com.example.elecshopping.User.UserPaymentMethodActivity;
 import com.example.elecshopping.User.UserReturnsActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,6 +66,7 @@ public class IndexActivity extends AppCompatActivity {
         listDataHeader.add("Delivery Time");
         listDataHeader.add("Returns Policy");
         listDataHeader.add("Exchange Policy");
+        listDataHeader.add("LogOut");
 
 
         // Adding child data
@@ -91,6 +95,10 @@ public class IndexActivity extends AppCompatActivity {
         final List<String> exchange = new ArrayList<String>();
         exchange.add("click here to Read the exchange policy");
 
+        final List<String> logout = new ArrayList<String>();
+        logout.add("Are you sure to logout?");
+
+
 
 
         listDataChild.put(listDataHeader.get(0), Categories);// Header, Child data
@@ -99,6 +107,7 @@ public class IndexActivity extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(4), time);
         listDataChild.put(listDataHeader.get(5), returns);
         listDataChild.put(listDataHeader.get(6), exchange);
+        listDataChild.put(listDataHeader.get(7), logout);
 
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
@@ -124,6 +133,15 @@ public class IndexActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
 
+                    case "Are you sure to logout?":
+
+                        FirebaseAuth.getInstance().signOut();
+                        intent = new Intent(IndexActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        Toast.makeText(getBaseContext(), "Successfully Logged Out", Toast.LENGTH_LONG).show();
+                        finish();
+                        break;
+
                     case "click here to Read the delivery time":
                         intent = new Intent(IndexActivity.this, UserDeliveryTimeActivity.class);
                         startActivity(intent);
@@ -138,6 +156,7 @@ public class IndexActivity extends AppCompatActivity {
                         intent = new Intent(IndexActivity.this, UserExchangeActivity.class);
                         startActivity(intent);
                         break;
+
 
                 }
 

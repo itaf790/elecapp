@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.elecshopping.HomeActivity;
 import com.example.elecshopping.MainActivity;
 import com.example.elecshopping.R;
 
@@ -57,7 +58,8 @@ public class AdminHomeActivity extends AppCompatActivity {
         maintan_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AdminHomeActivity.this, AdminMaintainProductsActivity.class);
+                Intent intent = new Intent(AdminHomeActivity.this, HomeActivity.class);
+                intent.putExtra("Admin","Admin");
                 startActivity(intent);
 
             }

@@ -95,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                parentDbName ="Admins";
                 Intent intent = new Intent(LoginActivity.this, AdminloginActivity.class);
                 startActivity(intent);
             }
@@ -157,7 +158,7 @@ public class LoginActivity extends AppCompatActivity {
                             else//Print the error message incase of failure
                             {
                                 String msg = task.getException().toString();
-                                Toast.makeText(LoginActivity.this,"Please try again ",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this,"Entered Email or Password is wrong",Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
                             }
                         }

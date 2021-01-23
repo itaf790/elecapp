@@ -12,8 +12,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.elecshopping.Model.Cart;
+import com.example.elecshopping.Model.Policies;
+import com.example.elecshopping.Model.Products;
 import com.example.elecshopping.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -28,9 +32,11 @@ import java.util.HashMap;
 
 public class AdminMaintainProductsActivity extends AppCompatActivity {
 
-
     private Button applyChangesBtn,deleteBtn;
-    private EditText price,description,name , deliverytime, deliveryfee, paymentmethod, brand;
+    private EditText price,description,name , deliverytime , deliveryfee, paymentmethod, discount, quantity, brand ;
+
+    private TextView productPrice, productDescription,productName , productDeliverytime, productDeliveryfee, productPaymentmethod, productQuantity , productBrand , numberquantity;
+
     private ImageView imageView;
     private String productID="";
     private DatabaseReference productRef;
@@ -51,10 +57,17 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
                 finish();
             }
         });
+
         applyChangesBtn= findViewById(R.id.apply_changes_btn_mantain);
         price= findViewById(R.id.maintan_product_price);
         description= findViewById(R.id.maintan_product_description);
         name= findViewById(R.id.maintan_product_name);
+        paymentmethod= findViewById(R.id.maintan_paymentmethod);
+        deliveryfee= findViewById(R.id.maintan_deliveryfee);
+        deliverytime= findViewById(R.id.maintan_deliverytime);
+       // discount= findViewById(R.id.maintan_product_discount);
+        brand= findViewById(R.id.maintan_product_brand);
+        quantity= findViewById(R.id.maintan_product_qnt);
         imageView= findViewById(R.id.product_image_mantain);
         deleteBtn= findViewById(R.id.delete_pdt_btn);
 
@@ -83,67 +96,6 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         productRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                AlertDialog.Builder builder
-                        = new AlertDialog
-                        .Builder(AdminMaintainProductsActivity.this);
-
-                // Set the message show for the Alert time
-                builder.setMessage("Are you sure to delete this product?");
-
-                // Set Alert Title
-                builder.setTitle("Delete product !");
-
-                // Set Cancelable false
-                // for when the user clicks on the outside
-                // the Dialog Box then it will remain show
-                builder.setCancelable(false);
-
-                // Set the positive button with yes name
-                // OnClickListener method is use of
-                // DialogInterface interface.
-
-                builder
-                        .setPositiveButton(
-                                "Yes",
-                                new DialogInterface
-                                        .OnClickListener() {
-
-                                    @Override
-                                    public void onClick(DialogInterface dialog,
-                                                        int which)
-                                    {
-
-                                        // When the user click yes button
-                                        // then app will close
-                                        finish();
-                                    }
-                                });
-
-                // Set the Negative button with No name
-                // OnClickListener method is use
-                // of DialogInterface interface.
-                builder
-                        .setNegativeButton(
-                                "No",
-                                new DialogInterface
-                                        .OnClickListener() {
-
-                                    @Override
-                                    public void onClick(DialogInterface dialog,
-                                                        int which)
-                                    {
-
-                                        // If user click no
-                                        // then dialog box is canceled.
-                                        dialog.cancel();
-                                    }
-                                });
-
-                // Create the Alert dialog
-                AlertDialog alertDialog = builder.create();
-
-                // Show the Alert Dialog box
-                alertDialog.show();
                 Toast.makeText(AdminMaintainProductsActivity.this,"Product deleted successfully",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(AdminMaintainProductsActivity.this, AdminHomeActivity.class);
                 startActivity(intent);
@@ -156,23 +108,50 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         String pName =name.getText().toString();
         String pPrice =price.getText().toString();
         String pDesc =description.getText().toString();
+        String pPayment =paymentmethod.getText().toString();
+       // String pDiscount =discount.getText().toString();
+        String pDetime =deliverytime.getText().toString();
+        String pDefee =deliveryfee.getText().toString();
+        String pBrand =brand.getText().toString();
+        String pQuantity =quantity.getText().toString();
+
         if(pName.equals("")){
             Toast.makeText(this,"Enter Product Name",Toast.LENGTH_LONG).show();
-
         }
 
         if(pPrice.equals("")){
             Toast.makeText(this,"Enter Product Price",Toast.LENGTH_LONG).show();
-
         }
         if(pDesc.equals("")){
             Toast.makeText(this,"Enter Product Description",Toast.LENGTH_LONG).show();
-
         }
+        if(pDefee.equals("")){
+            Toast.makeText(this,"Enter Product Deliver fee",Toast.LENGTH_LONG).show();
+        }
+        if(pDetime.equals("")){
+            Toast.makeText(this,"Enter Product Delivery time",Toast.LENGTH_LONG).show();
+        }
+        if(pBrand.equals("")){
+            Toast.makeText(this,"Enter Product Brand",Toast.LENGTH_LONG).show();
+        }
+      //  if(pDiscount.equals("")){ Toast.makeText(this,"Enter Product Discount",Toast.LENGTH_LONG).show(); }
+        if(pPayment.equals("")){
+            Toast.makeText(this,"Enter Product payment method ",Toast.LENGTH_LONG).show();
+        }
+        if(pQuantity.equals("")){
+            Toast.makeText(this,"Enter Product quantity ",Toast.LENGTH_LONG).show();
+        }
+
         else {
             final HashMap<String,Object> prodMap=new HashMap<>();
             prodMap.put("pid",productID);
             prodMap.put("pname",pName);
+            prodMap.put("pquantity",pQuantity);
+            prodMap.put("delivery_fee",pDefee);
+            prodMap.put("delivery_time",pDetime);
+            prodMap.put("payment_method",pPayment);
+            prodMap.put("brand",pBrand);
+           // prodMap.put("discount",pDiscount);
             prodMap.put("price",pPrice);
             prodMap.put("description",pDesc);
             productRef.updateChildren(prodMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -199,11 +178,23 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     String pName= dataSnapshot.child("pname").getValue().toString();
+                    String pQuantity= dataSnapshot.child("pquantity").getValue().toString();
+                    String pPayment= dataSnapshot.child("payment_method").getValue().toString();
+                    String pDefee= dataSnapshot.child("delivery_fee").getValue().toString();
+                    String pDetime= dataSnapshot.child("delivery_time").getValue().toString();
+                   // String pDiscount= dataSnapshot.child("discount").getValue().toString();
+                    String pBrand= dataSnapshot.child("brand").getValue().toString();
                     String pPrice= dataSnapshot.child("price").getValue().toString();
                     String pDescription= dataSnapshot.child("description").getValue().toString();
                     String pImage= dataSnapshot.child("image").getValue().toString();
 
                     name.setText(pName);
+                    quantity.setText(pQuantity);
+                    paymentmethod.setText(pPayment);
+                    deliveryfee.setText(pDefee);
+                    deliverytime.setText(pDetime);
+                  //  discount.setText(pDiscount);
+                    brand.setText(pBrand);
                     price.setText(pPrice);
                     description.setText(pDescription);
                     Picasso.get().load(pImage).into(imageView);

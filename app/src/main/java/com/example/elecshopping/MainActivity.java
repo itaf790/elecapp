@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         loginlink= (TextView)findViewById(R.id.login);
         createaccountlink= (TextView)findViewById(R.id.createaccount);
         btngoshopping = (Button)findViewById(R.id.goshopping);
+
         btngoshopping.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

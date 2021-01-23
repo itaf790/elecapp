@@ -59,26 +59,72 @@
 
 
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_below="@id/carouselView"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        >
 
-        <ScrollView
+        <HorizontalScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/carouselView"
-            android:id="@+id/scroll">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginStart="10dp">
 
-                <androidx.recyclerview.widget.RecyclerView
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/dell"></ImageView>
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10sp"
+                    android:src="@drawable/hp"></ImageView>
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10sp"
+                    android:src="@drawable/samsu"></ImageView>
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10sp"
+                    android:src="@drawable/sony"></ImageView>
+
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10sp"
+                    android:src="@drawable/apple"></ImageView>
+
+            </LinearLayout>
+
+
+        </HorizontalScrollView>
+    </RelativeLayout>
+
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_menu"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:backgroundTint="#FFFCF8" />
+                    android:backgroundTint="#FFFCF8"
+                    android:layout_above="@id/nav_view"
+                    android:layout_below="@id/relativeLayout"
 
-            </LinearLayout>
-        </ScrollView>
+                    />
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"

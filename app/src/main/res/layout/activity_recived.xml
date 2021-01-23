@@ -37,7 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="please confirm your shipment details"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:textColor="#5A554D"
         android:layout_below="@id/text"
         android:layout_marginTop="60dp"
@@ -54,7 +54,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
-        android:hint="your name"
+        android:hint="your full name"
         android:textColor="#000000"
         android:textColorHint="#000000" />
     <EditText
@@ -92,7 +92,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:hint="Your Home City"
+        android:hint="Confirm E-mail Address"
         android:textColorHint="#000000"
         android:textColor="#000000"
         />
@@ -105,9 +105,23 @@
         android:background="@drawable/buttons"
         android:textColor="#292626"
         android:textSize="20dp"
+        android:padding="20dp"
         android:layout_marginTop="500dp"
         android:layout_centerHorizontal="true"
         />
+
+    <TextView
+        android:id="@+id/txttotalprice"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/shipment_address"
+        android:layout_marginTop="100dp"
+        android:text="Price "
+        android:padding="20dp"
+        android:textColor="@color/black"
+        android:background="@drawable/inputs"></TextView>
 
 
 

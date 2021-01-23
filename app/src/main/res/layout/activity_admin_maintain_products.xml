@@ -93,7 +93,7 @@
 
                         android:gravity="center"
                         android:padding="15dip"
-                         />
+                        />
                 </TableRow>
 
                 <TableRow
@@ -170,7 +170,7 @@
 
                         android:gravity="center"
                         android:padding="15dip"
-                       />
+                        />
                 </TableRow>
 
                 <TableRow
@@ -247,7 +247,7 @@
 
                         android:gravity="center"
                         android:padding="15dip"
-                         />
+                        />
                 </TableRow>
 
                 <TableRow
@@ -273,7 +273,33 @@
 
                         android:gravity="center"
                         android:padding="15dip"
-                         />
+                        />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/inputs"
+                    android:layout_marginTop="10dp" >
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+
+                        android:gravity="center"
+                        android:padding="15dip"
+                        android:text="Discount"
+                        android:id="@+id/txtdiscount"
+                        android:textColor="@color/black"/>
+
+                    <EditText
+                        android:id="@+id/maintan_product_discount"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+
+                        android:gravity="center"
+                        android:padding="15dip"
+                        />
                 </TableRow>
 
             </TableLayout>

@@ -44,7 +44,7 @@ public class AdminCheckOrdersActivity extends AppCompatActivity {
                 finish();
             }
         });
-        ordersRef = FirebaseDatabase.getInstance().getReference().child("AdminOrders");
+        ordersRef = FirebaseDatabase.getInstance().getReference().child("Orders");
         ordersList = findViewById(R.id.orders_list);
         ordersList.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -62,11 +62,11 @@ public class AdminCheckOrdersActivity extends AppCompatActivity {
                 new FirebaseRecyclerAdapter<AdminOrders, AdminOrdersViewHolder>(options) {
                     @Override
                     protected void onBindViewHolder(@NonNull AdminOrdersViewHolder holder, final int position, @NonNull final AdminOrders model) {
-                        holder.userName.setText("Name: " + model.getName());
-                        holder.userPhoneNumber.setText("Phone: " + model.getPhone());
-                        holder.userTotalPrice.setText("Total Amount = $: " + model.getTotalAmount());
-                        holder.userDateTime.setText("Order at: " + model.getDate() + " " + model.getTime());
-                        holder.userShippingAddress.setText("Shipping Address: " + model.getAddress() + ", " + model.getCity());
+                        holder.userName.setText("User Name: " + model.getName());
+                        holder.userPhoneNumber.setText("Phone Number: " + model.getPhone());
+                        holder.userTotalPrice.setText( model.getTotalAmount());
+                        holder.userDateTime.setText("Order at: " + model.getDate() + "  ,  " + model.getTime());
+                        holder.userShippingAddress.setText("Shipping Address:  " + model.getAddress());
 
                         holder.showOrdersBtn.setOnClickListener(new View.OnClickListener() {
                             @Override

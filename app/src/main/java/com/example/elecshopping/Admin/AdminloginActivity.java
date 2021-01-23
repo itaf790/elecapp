@@ -31,7 +31,7 @@ public class AdminloginActivity extends AppCompatActivity {
     private Button login;
     private FirebaseAuth auth;//Used for firebase authentication
     private ProgressDialog loadingBar;
-    private String parentDbName="Admin";
+    private String parentDbName="Admins";
     private TextView forgotPassword;
 
     @Override
@@ -112,7 +112,7 @@ public class AdminloginActivity extends AppCompatActivity {
                                     {
                                         String msg = task.getException().toString();
                                         loadingBar.dismiss();
-                                        Toast.makeText(AdminloginActivity.this, "Wrong, Please try again", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(AdminloginActivity.this, "Wrong,Entered Email & Password is wrong", Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

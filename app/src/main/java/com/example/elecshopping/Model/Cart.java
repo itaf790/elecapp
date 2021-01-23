@@ -2,24 +2,36 @@ package com.example.elecshopping.Model;
 
 public class Cart {
 
-    private String pid,pname,price,quantity,discount, brand , date , time , deliveryfee , deliverrytime , paymentmethod  ;
 
-    public Cart(String pid, String pname, String price, String quantity, String discount, String brand, String date, String time, String deliveryfee, String deliverrytime, String paymentmethod) {
+    private String pid,pname,price,pquantity,discount, brand , date , time , delivery_fee , delivery_time , payment_method , numberquantity , totalAmount ;
+
+    public Cart(String pid, String pname,String totalAmount, String price, String pquantity, String discount, String brand, String date, String time, String delivery_fee, String delivery_time, String payment_method, String numberquantity) {
         this.pid = pid;
         this.pname = pname;
         this.price = price;
-        this.quantity = quantity;
+        this.pquantity = pquantity;
         this.discount = discount;
         this.brand = brand;
         this.date = date;
         this.time = time;
-        this.deliveryfee = deliveryfee;
-        this.deliverrytime = deliverrytime;
-        this.paymentmethod = paymentmethod;
+        this.delivery_fee = delivery_fee;
+        this.delivery_time = delivery_time;
+        this.payment_method = payment_method;
+        this.numberquantity = numberquantity;
+        this.totalAmount = totalAmount;
+    }
+
+    public String getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(String totalAmount) {
+        this.totalAmount = totalAmount;
     }
 
     public Cart() {
     }
+
 
     public String getPid() {
         return pid;
@@ -45,12 +57,12 @@ public class Cart {
         this.price = price;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public String getPquantity() {
+        return pquantity;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setPquantity(String pquantity) {
+        this.pquantity = pquantity;
     }
 
     public String getDiscount() {
@@ -85,27 +97,35 @@ public class Cart {
         this.time = time;
     }
 
-    public String getDeliveryfee() {
-        return deliveryfee;
+    public String getDelivery_fee() {
+        return delivery_fee;
     }
 
-    public void setDeliveryfee(String deliveryfee) {
-        this.deliveryfee = deliveryfee;
+    public void setDelivery_fee(String delivery_fee) {
+        this.delivery_fee = delivery_fee;
     }
 
-    public String getDeliverrytime() {
-        return deliverrytime;
+    public String getDelivery_time() {
+        return delivery_time;
     }
 
-    public void setDeliverrytime(String deliverrytime) {
-        this.deliverrytime = deliverrytime;
+    public void setDelivery_time(String delivery_time) {
+        this.delivery_time = delivery_time;
     }
 
-    public String getPaymentmethod() {
-        return paymentmethod;
+    public String getPayment_method() {
+        return payment_method;
     }
 
-    public void setPaymentmethod(String paymentmethod) {
-        this.paymentmethod = paymentmethod;
+    public void setPayment_method(String payment_method) {
+        this.payment_method = payment_method;
+    }
+
+    public String getNumberquantity() {
+        return numberquantity;
+    }
+
+    public void setNumberquantity(String numberquantity) {
+        this.numberquantity = numberquantity;
     }
 }
