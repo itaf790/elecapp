@@ -46,7 +46,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
     private ImageView productImage;
     private NumberPicker np ;
     private ElegantNumberButton numberButton;
-    private TextView productPrice, productDescription,productName , productDeliverytime, productDeliveryfee, productPaymentmethod, productQuantity , productBrand , numberquantity;
+    private TextView productPrice, productDescription,productName , productDeliverytime, productDeliveryfee, productPaymentmethod,productDiscount, productQuantity , productBrand , numberquantity;
     private String productID = "", state = "Normal";
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private DatabaseReference mUserDatabase = FirebaseDatabase.getInstance().getReference();
@@ -82,6 +82,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         productDeliverytime = (TextView) findViewById(R.id.delivery_time_details);
        // productQuantity = (TextView) findViewById(R.id.product_qnt_details);
         productPaymentmethod= (TextView) findViewById(R.id.payment_method_details);
+        productDiscount= (TextView) findViewById(R.id.product_discount);
         numberquantity = (TextView) findViewById(R.id.tv);
         np = (NumberPicker) findViewById(R.id.np);
 
@@ -142,7 +143,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
             cartMap.put("date", saveCurrentDate);
             cartMap.put("time", saveCurrentTime);
             cartMap.put("numberquantity", numberquantity.getText().toString());
-            cartMap.put("discount", "");
+            cartMap.put("discount", productDiscount.getText().toString());
 
 
             cartListRef.child("User View").child(currentUser.getUid())
@@ -200,6 +201,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                     productDeliveryfee.setText(products.getDelivery_fee());
                     productDeliverytime.setText(products.getDelivery_time());
                     productBrand.setText(products.getBrand());
+                    productDiscount.setText(products.getDiscount());
 //                    productQuantity.setText(products.getPquantity());
                     productPrice.setText(products.getPrice());
                     productDescription.setText(products.getDescription());

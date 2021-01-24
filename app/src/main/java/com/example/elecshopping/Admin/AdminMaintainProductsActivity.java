@@ -65,7 +65,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         paymentmethod= findViewById(R.id.maintan_paymentmethod);
         deliveryfee= findViewById(R.id.maintan_deliveryfee);
         deliverytime= findViewById(R.id.maintan_deliverytime);
-       // discount= findViewById(R.id.maintan_product_discount);
+        discount= findViewById(R.id.maintan_product_discount);
         brand= findViewById(R.id.maintan_product_brand);
         quantity= findViewById(R.id.maintan_product_qnt);
         imageView= findViewById(R.id.product_image_mantain);
@@ -109,7 +109,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         String pPrice =price.getText().toString();
         String pDesc =description.getText().toString();
         String pPayment =paymentmethod.getText().toString();
-       // String pDiscount =discount.getText().toString();
+        String pDiscount =discount.getText().toString();
         String pDetime =deliverytime.getText().toString();
         String pDefee =deliveryfee.getText().toString();
         String pBrand =brand.getText().toString();
@@ -141,6 +141,9 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         if(pQuantity.equals("")){
             Toast.makeText(this,"Enter Product quantity ",Toast.LENGTH_LONG).show();
         }
+        if(pDiscount.equals("")){
+            Toast.makeText(this,"Enter Product discount ",Toast.LENGTH_LONG).show();
+        }
 
         else {
             final HashMap<String,Object> prodMap=new HashMap<>();
@@ -151,7 +154,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
             prodMap.put("delivery_time",pDetime);
             prodMap.put("payment_method",pPayment);
             prodMap.put("brand",pBrand);
-           // prodMap.put("discount",pDiscount);
+            prodMap.put("discount",pDiscount);
             prodMap.put("price",pPrice);
             prodMap.put("description",pDesc);
             productRef.updateChildren(prodMap).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -182,7 +185,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
                     String pPayment= dataSnapshot.child("payment_method").getValue().toString();
                     String pDefee= dataSnapshot.child("delivery_fee").getValue().toString();
                     String pDetime= dataSnapshot.child("delivery_time").getValue().toString();
-                   // String pDiscount= dataSnapshot.child("discount").getValue().toString();
+                    String pDiscount= dataSnapshot.child("discount").getValue().toString();
                     String pBrand= dataSnapshot.child("brand").getValue().toString();
                     String pPrice= dataSnapshot.child("price").getValue().toString();
                     String pDescription= dataSnapshot.child("description").getValue().toString();
@@ -193,7 +196,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
                     paymentmethod.setText(pPayment);
                     deliveryfee.setText(pDefee);
                     deliverytime.setText(pDetime);
-                  //  discount.setText(pDiscount);
+                    discount.setText(pDiscount);
                     brand.setText(pBrand);
                     price.setText(pPrice);
                     description.setText(pDescription);

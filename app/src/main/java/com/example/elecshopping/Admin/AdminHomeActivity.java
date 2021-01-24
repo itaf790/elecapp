@@ -65,14 +65,7 @@ public class AdminHomeActivity extends AppCompatActivity {
             }
         });
 
-        addcategory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AdminHomeActivity.this, AdminAddCategoryActivity.class);
-                startActivity(intent);
 
-            }
-        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

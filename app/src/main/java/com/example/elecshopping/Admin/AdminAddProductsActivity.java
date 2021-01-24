@@ -37,7 +37,7 @@ public class AdminAddProductsActivity extends AppCompatActivity {
     private String categoryName, description, price, pname,saveCurrentDate, saveCurrentTime, brand , paymentmethod, deliverytime, deliveryfee, pquantity, discount;
     private Button addNewProductButton;
     private ImageView inputProductImage;
-    private EditText inputProductName, inputProductDescription, inputProductPrice , inputProductbrand, inputProductpaymentmethod , inputProductdelfee, inputProductDiscount, inputProductdeltime,inputProductquantity ;
+    private EditText inputProductName ,inputProductDescription, inputProductPrice , inputProductbrand, inputProductpaymentmethod , inputProductdelfee, inputProductDiscount, inputProductdeltime,inputProductquantity ;
     private static final int GalleryPick = 1;
     private Uri imageUri;
     private String productRandomKey,downLoadImageUrl;

@@ -39,26 +39,14 @@ import java.util.HashMap;
 
 public class ExchangeAndReturnsActivity extends AppCompatActivity {
 
+
+    private TextView txtname;
     private ImageView closeTextBtn;
-    private Button next;
-    private EditText writereason;
-    private RadioButton radioexchange , radioreturns;
-    private RadioGroup radioGroup;
-   private RadioButton radioButton;
-    private ImageView productImage;
-    private NumberPicker nexre ;
-    private TextView txtMsg1 , txtre, txtselect , txtradio ,select ;
-    private TextView productPrice,productName , productBrand , numberquantity;
-    private String productID = "";
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private DatabaseReference mUserDatabase = FirebaseDatabase.getInstance().getReference();
+    private String polID = "";
     FirebaseUser currentUser = mAuth.getCurrentUser();
-    private String[] pickerVals;
 
-
-
-
-    private String radio = "";
 
 
 
@@ -69,154 +57,48 @@ public class ExchangeAndReturnsActivity extends AppCompatActivity {
 
 
         closeTextBtn = (ImageView) findViewById(R.id.close);
-        closeTextBtn.setOnClickListener(new View.OnClickListener()
-        {
+        closeTextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 finish();
             }
         });
 
 
-        closeTextBtn = (ImageView) findViewById(R.id.close);
-        closeTextBtn.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                finish();
-            }
-        });
 
 
-        productID = getIntent().getStringExtra("pid");
-
-
-        productImage = (ImageView) findViewById(R.id.product_image_details);
-        productPrice = (TextView) findViewById(R.id.product_price_details);
-
-        productName = (TextView) findViewById(R.id.product_name_details);
-        productBrand = (TextView) findViewById(R.id.product_brand_details);
-
-        numberquantity = (TextView) findViewById(R.id.tv);
-
-
-        productID=getIntent().getStringExtra("pid");
+        txtname = (TextView) findViewById(R.id.exrename);
 
 
 
-        getProductDetails(productID);
-        addingToCartList();
+        polID=getIntent().getStringExtra("pid");
 
 
+        getProductDetails(polID);
 
-    }
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-
-    }
-
-    private void addingToCartList() {
-
-        if (currentUser != null) {
-            String saveCurrentTime, saveCurrentDate;
-            Calendar calForDate = Calendar.getInstance();
-            SimpleDateFormat currentDate = new SimpleDateFormat("MMM dd, yyyy");
-            saveCurrentDate = currentDate.format(calForDate.getTime());
-
-            SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm:ss a");
-            saveCurrentTime = currentTime.format(calForDate.getTime());
-
-
-            final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
-
-            final HashMap<String, Object> cartMap = new HashMap<>();
-            cartMap.put("pid", productID);
-            cartMap.put("pname", productName.getText().toString());
-            cartMap.put("price", productPrice.getText().toString());
-
-            cartMap.put("brand", productBrand.getText().toString());
-            // cartMap.put("pquantity",productQuantity.getText().toString());
-            cartMap.put("date", saveCurrentDate);
-            cartMap.put("time", saveCurrentTime);
-            cartMap.put("numberquantity", numberquantity.getText().toString());
-            cartMap.put("discount", "");
-
-
-            cartListRef.child("User View").child(currentUser.getUid())
-                    .child("Products").child(productID).updateChildren(cartMap)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                cartListRef.child("Admin View").child(currentUser.getUid()).child("Products")
-                                        .child(productID).updateChildren(cartMap)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-
-                                                    Toast.makeText(ExchangeAndReturnsActivity.this, "Added To Cart List", Toast.LENGTH_SHORT).show();
-                                                    Intent intent = new Intent(ExchangeAndReturnsActivity.this, HomeActivity.class);
-                                                    startActivity(intent);
-                                                }
-                                            }
-                                        });
-
-                            }
-
-
-                        }
-                    });
-
-        }
-        else
-            Toast.makeText(this, "you must login ", Toast.LENGTH_SHORT).show();
-
-
-
-    }
-
-
-
-
-
-
-    private void getProductDetails(String productID) {
-        final DatabaseReference productsRef= FirebaseDatabase.getInstance().getReference().child("Products");
-        productsRef.child(productID).addValueEventListener(new ValueEventListener() {
+        final DatabaseReference productsRef= FirebaseDatabase.getInstance().getReference().child("Cart List");
+        productsRef.child("User View").child(currentUser.getUid()).child("Products").child(polID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                if (dataSnapshot.exists()) {
-                    Products products = dataSnapshot.getValue(Products.class);
-                    Cart cart = dataSnapshot.getValue(Cart.class);
+                if (dataSnapshot.exists()){
+                    Products policies = dataSnapshot.getValue(Products.class);
+                    txtname.setText(policies.getBrand());
 
+                }
 
-                    productName.setText(products.getPname());
-
-                    productBrand.setText(products.getBrand());
-//                    productQuantity.setText(products.getPquantity());
-                    productPrice.setText(products.getPrice());
-
-                    Picasso.get().load(products.getImage()).into(productImage);
-
-
-                } }
+            }
 
             @Override
             public void onCancelled( DatabaseError databaseError) {
-
+                throw databaseError.toException();
 
             }
         });
+
+
     }
 
-
-
+    private void getProductDetails(String polID) {
+    }
 }

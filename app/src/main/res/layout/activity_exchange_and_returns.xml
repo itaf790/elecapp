@@ -44,19 +44,14 @@
 
 
 
-    <ImageView
-        android:id="@+id/product_image_details"
-        android:layout_width="380dp"
-        android:layout_height="190dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_menu_camera"
-        android:layout_marginTop="20dp"></ImageView>
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/text"
         android:layout_marginTop="20dp"
-       >
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,257 +59,25 @@
             android:orientation="vertical" >
 
 
-
-
-            <TableLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="5dp"
-                android:layout_marginTop="10dp">
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/inputs"
-                    >
-
-                    <TextView
-                        android:id="@+id/txtpaymentmethod"
-                        android:layout_width="3dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="15dip"
-                        android:text="Payment method"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        android:id="@+id/payment_method_details"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="15dip"
-                        />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/inputs"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-
-                        android:gravity="center"
-                        android:padding="15dip"
-                        android:id="@+id/txtdeliveryfee"
-                        android:textColor="@color/black"
-                        android:text="Delivery fee" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:id="@+id/delivery_fee_details"
-                        android:layout_weight="1"
-
-                        android:gravity="center"
-                        android:padding="15dip"
-                        />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/inputs"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:id="@+id/txtdeliverytime"
-                        android:textColor="@color/black"
-
-                        android:gravity="center"
-                        android:padding="15dip"
-                        android:text="Delivery time" />
-
-                    <TextView
-                        android:id="@+id/delivery_time_details"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-
-                        android:gravity="center"
-                        android:padding="15dip"
-                        android:text="" />
-                </TableRow>
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/inputs"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:id="@+id/txtproductname"
-                        android:textColor="@color/black"
-
-                        android:gravity="center"
-                        android:padding="15dip"
-                        android:text="Product name" />
-
-                    <TextView
-                        android:id="@+id/product_name_details"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-
-                        android:gravity="center"
-                        android:padding="15dip"
-                        />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/inputs"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-
-                        android:gravity="center"
-                        android:padding="15dip"
-                        android:text="product price"
-                        android:id="@+id/txtproductprice"
-                        android:textColor="@color/black"/>
-
-                    <TextView
-                        android:id="@+id/product_price_details"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:padding="15dip"
-                        />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/inputs"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-
-                        android:gravity="center"
-                        android:padding="15dip"
-                        android:text="Product brand"
-                        android:id="@+id/txtproductbrand"
-                        android:textColor="@color/black"/>
-
-                    <TextView
-                        android:id="@+id/product_brand_details"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-
-                        android:gravity="center"
-                        android:padding="15dip"
-                        />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/inputs"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-
-                        android:gravity="center"
-                        android:padding="15dip"
-                        android:text="Description"
-                        android:id="@+id/txtdescription"
-                        android:textColor="@color/black"/>
-
-                    <TextView
-                        android:id="@+id/product_description_details"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-
-                        android:gravity="center"
-                        android:padding="15dip"
-                        />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/inputs"
-                    android:layout_marginTop="10dp"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-
-                        android:gravity="center"
-                        android:padding="15dip"
-                        android:text="Discount"
-                        android:id="@+id/txtdiscount"
-                        android:textColor="@color/black"/>
-
-                    <EditText
-                        android:id="@+id/product_discount"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-
-                        android:gravity="center"
-                        android:padding="15dip"
-                        />
-                </TableRow>
-
-            </TableLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <TextView
-    android:layout_width="320dp"
-    android:layout_height="wrap_content"
-  android:id="@+id/txtre"
-    android:layout_marginTop="20dp"
-  android:layout_gravity="center"
-    android:textColor="@color/black"
-    android:textSize="17dp"
-    android:text="Usually, the exchange and return process for orders takes 1-2 days"></TextView>
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtre"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:text="Usually, the exchange and return process for orders takes 1-2 days"></TextView>
 
-    <ImageView
-        android:id="@+id/exreimage"
-        android:layout_width="160dp"
-        android:layout_height="180dp"
-        android:layout_below="@id/txtre"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"></ImageView>
+
+
+            <ImageView
+                android:id="@+id/exreimage"
+                android:layout_width="380dp"
+                android:layout_height="190dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_menu_camera"
+                android:layout_marginTop="20dp"></ImageView>
 
             <TextView
                 android:id="@+id/exrename"
@@ -327,61 +90,47 @@
                 android:textSize="20dp"></TextView>
 
             <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/exrebrand"
-        android:text="brand"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:layout_below="@id/exrename"
-        android:layout_toEndOf="@id/exreimage"></TextView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/exreprice"
-        android:text="price"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:layout_below="@id/exrebrand"
-        android:layout_toEndOf="@id/exreimage"></TextView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/exreqnt"
-        android:text="quantity"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:layout_below="@id/exreprice"
-        android:layout_toEndOf="@id/exreimage"></TextView>
-
-
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/exrebrand"
+                android:text="brand"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:layout_below="@id/exrename"
+                android:layout_toEndOf="@id/exreimage"></TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/exreprice"
+                android:text="price"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:layout_below="@id/exrebrand"
+                android:layout_toEndOf="@id/exreimage"></TextView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/exreqnt"
+                android:text="quantity"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:layout_below="@id/exreprice"
+                android:layout_toEndOf="@id/exreimage"></TextView>
 
             <TextView
-                android:id="@+id/textnumb"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
-                android:layout_marginTop="20dp"
+                android:layout_below="@id/exreqnt"
+                android:text="Select One:"
                 android:textColor="@color/black"
-                android:shadowColor="@color/black"
-                android:layout_gravity="center"
-                android:text="Select One ..."
-                android:visibility="visible"
-                />
-            <NumberPicker
-                android:id="@+id/np"
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv"
-                android:visibility="visible"
-                />
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"></TextView>
 
 
 
@@ -405,10 +154,10 @@
                 tools:ignore="MissingConstraints" />
 
             <EditText
-                android:id="@+id/writereason"
                 android:layout_width="358dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/exreqnt"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
                 android:gravity="center"
                 android:layout_gravity="center"

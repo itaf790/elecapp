@@ -60,7 +60,6 @@ public class IndexActivity extends AppCompatActivity {
 
         // Adding child data
         listDataHeader.add("Categories");
-        listDataHeader.add("Offers");
         listDataHeader.add("Payment Method");
         listDataHeader.add("Delivery Fee");
         listDataHeader.add("Delivery Time");
@@ -107,13 +106,13 @@ public class IndexActivity extends AppCompatActivity {
 
 
         listDataChild.put(listDataHeader.get(0), Categories);// Header, Child data
-        listDataChild.put(listDataHeader.get(2), Payment);
-        listDataChild.put(listDataHeader.get(3), fee);
-        listDataChild.put(listDataHeader.get(4), time);
-        listDataChild.put(listDataHeader.get(5), returns);
-        listDataChild.put(listDataHeader.get(6), exchange);
-        listDataChild.put(listDataHeader.get(7), exre);
-        listDataChild.put(listDataHeader.get(8), logout);
+        listDataChild.put(listDataHeader.get(1), Payment);
+        listDataChild.put(listDataHeader.get(2), fee);
+        listDataChild.put(listDataHeader.get(3), time);
+        listDataChild.put(listDataHeader.get(4), returns);
+        listDataChild.put(listDataHeader.get(5), exchange);
+        listDataChild.put(listDataHeader.get(6), exre);
+        listDataChild.put(listDataHeader.get(7), logout);
 
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 

@@ -320,7 +320,6 @@ public class HomeActivity extends AppCompatActivity implements BottomNavigationV
 
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-
         //  If item is Checked make it unchecked
         if (item.isChecked ())
             item.setChecked (false);
