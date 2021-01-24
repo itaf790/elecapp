@@ -66,6 +66,7 @@ public class IndexActivity extends AppCompatActivity {
         listDataHeader.add("Delivery Time");
         listDataHeader.add("Returns Policy");
         listDataHeader.add("Exchange Policy");
+        listDataHeader.add("Exchange and Returns");
         listDataHeader.add("LogOut");
 
 
@@ -95,6 +96,10 @@ public class IndexActivity extends AppCompatActivity {
         final List<String> exchange = new ArrayList<String>();
         exchange.add("click here to Read the exchange policy");
 
+
+        final List<String> exre = new ArrayList<String>();
+        exre.add("Do you want to return or exchange the products?");
+
         final List<String> logout = new ArrayList<String>();
         logout.add("Are you sure to logout?");
 
@@ -107,7 +112,8 @@ public class IndexActivity extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(4), time);
         listDataChild.put(listDataHeader.get(5), returns);
         listDataChild.put(listDataHeader.get(6), exchange);
-        listDataChild.put(listDataHeader.get(7), logout);
+        listDataChild.put(listDataHeader.get(7), exre);
+        listDataChild.put(listDataHeader.get(8), logout);
 
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
 
@@ -149,6 +155,11 @@ public class IndexActivity extends AppCompatActivity {
 
                     case "click here to Read the returns policy":
                         intent = new Intent(IndexActivity.this, UserReturnsActivity.class);
+                        startActivity(intent);
+                        break;
+
+                    case "Do you want to return or exchange the products?":
+                        intent = new Intent(IndexActivity.this, ExchangeAndReturnsActivity.class);
                         startActivity(intent);
                         break;
 

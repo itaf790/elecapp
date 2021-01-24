@@ -47,7 +47,7 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private Button nextProcessBtn;
     private TextView txtMsg1 ,txtTotalAmount  ;
-    private int overTotalAmount = 0 , overtotal=0;
+    private int overTotalAmount = 0 , overtotal=0 ,overdiscount= 0, discountproduct=1, totaldiscount= 0  ;
     private ImageView closeTextBtn;
     private ProgressDialog loadingBar;
     private String OverTotalAmount = "";
@@ -135,16 +135,25 @@ public class CartActivity extends AppCompatActivity {
                             cartViewHolder.txtProductTime.setText("Time: "+ model.getTime());
                             cartViewHolder.txtProductDate.setText("Date:  "+ model.getDate());
                             cartViewHolder.txtProductshipped.setText("Shipped Price =  $ "+ model.getDelivery_fee());
+                            cartViewHolder.txtProductDiscount.setText("Discount =  % "+ model.getDiscount());
 
 
-
+                            int discount = (Integer.valueOf(model.getDiscount())) ;
                             int oneTypeTotalPrice = (Integer.valueOf(model.getPrice())) * Integer.valueOf(model.getNumberquantity());
                             int oneTypeTotalShipped = (Integer.valueOf(model.getDelivery_fee())) ;
-                            overtotal = oneTypeTotalPrice + oneTypeTotalShipped;
-                            overTotalAmount = overTotalAmount + oneTypeTotalPrice +oneTypeTotalShipped;
+                            overtotal = (oneTypeTotalPrice + oneTypeTotalShipped) ;
+                            int price_after_discount =  overtotal* discount;
+                             totaldiscount = overtotal-price_after_discount;
+
+                            overTotalAmount = overTotalAmount + totaldiscount;
+
+
+                            //////////////////// if discount for all products
+                            int discount_for_all = (Integer.valueOf(model.getOverdiscount())) ;
+
 
                             cartViewHolder.txtProducttotalprice.setText("Total Price =  $"+ oneTypeTotalPrice);
-                            cartViewHolder.txttotalamount.setText("Total Amount = $ "+ overtotal);
+                            cartViewHolder.txttotalamount.setText("Total Amount = $ "+ totaldiscount);
                             txtTotalAmount.setText("Total Price = $" + overTotalAmount);
 
 ////////////////////////////////////// this to put totalamount in firebase under cartlist

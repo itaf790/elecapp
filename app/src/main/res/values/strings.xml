@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Elec Shopping</string>
+    <string name="app_name" translatable="false">Elec Shopping</string>
+    <string name="find_discover_choose_and_buy_anything_online">Find, Discover, Choose and Buy anything Online</string>
 </resources>

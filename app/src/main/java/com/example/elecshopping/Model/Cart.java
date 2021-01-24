@@ -3,7 +3,7 @@ package com.example.elecshopping.Model;
 public class Cart {
 
 
-    private String pid,pname,price,pquantity,discount, brand , date , time , delivery_fee , delivery_time , payment_method , numberquantity , totalAmount ;
+    private String pid,pname,price,pquantity,discount, brand , date , time , delivery_fee , delivery_time , payment_method , numberquantity , totalAmount , overdiscount  ;
 
     public Cart(String pid, String pname,String totalAmount, String price, String pquantity, String discount, String brand, String date, String time, String delivery_fee, String delivery_time, String payment_method, String numberquantity) {
         this.pid = pid;
@@ -19,6 +19,18 @@ public class Cart {
         this.payment_method = payment_method;
         this.numberquantity = numberquantity;
         this.totalAmount = totalAmount;
+    }
+
+    public Cart(String overdiscount) {
+        this.overdiscount = overdiscount;
+    }
+
+    public String getOverdiscount() {
+        return overdiscount;
+    }
+
+    public void setOverdiscount(String overdiscount) {
+        this.overdiscount = overdiscount;
     }
 
     public String getTotalAmount() {

@@ -59,7 +59,6 @@ public class UserDeliveryFeeActivity extends AppCompatActivity {
 
                 if (dataSnapshot.exists()){
                     Policies policies = dataSnapshot.getValue(Policies.class);
-                    Log.d("mmmmmmmmm","lllllllllllllllllllll");
                     txtdeliverfee.setText(policies.getDelivery_fee());
 
                 }

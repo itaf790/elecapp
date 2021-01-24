@@ -1,12 +1,13 @@
 package com.example.elecshopping.Model;
 
 public class AdminOrders {
-    private String name, phone, address, city, state, date , time, totalAmount;
+    private String name, phone, address, city, state, date , time, totalAmount , reason, exchangeorreturns;
 
     public AdminOrders() {
     }
 
-    public AdminOrders(String name, String phone, String address, String city, String state, String date, String time, String totalAmount) {
+
+    public AdminOrders(String name, String phone, String address, String city, String state, String date, String time, String totalAmount, String reason, String exchangeorreturns) {
         this.name = name;
         this.phone = phone;
         this.address = address;
@@ -15,6 +16,8 @@ public class AdminOrders {
         this.date = date;
         this.time = time;
         this.totalAmount = totalAmount;
+        this.reason = reason;
+        this.exchangeorreturns = exchangeorreturns;
     }
 
     public String getName() {
@@ -79,5 +82,21 @@ public class AdminOrders {
 
     public void setTotalAmount(String totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getExchangeorreturns() {
+        return exchangeorreturns;
+    }
+
+    public void setExchangeorreturns(String exchangeorreturns) {
+        this.exchangeorreturns = exchangeorreturns;
     }
 }

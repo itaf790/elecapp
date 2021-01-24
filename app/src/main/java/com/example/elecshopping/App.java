@@ -9,7 +9,7 @@ public class App extends Application {
     public void onCreate(){
         super.onCreate();
 
-        LocaleUtils.setLocale(new Locale("en"));
+        LocaleUtils.setLocale(new Locale("ar"));
         LocaleUtils.updateConfig(this, getBaseContext().getResources().getConfiguration());
     }
 

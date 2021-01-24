@@ -12,7 +12,9 @@ import com.example.elecshopping.R;
 
 public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    public TextView txtProductName, txtProductPrice, txtProductQuantity, txtProductTime , txtProductDate , txtProductBrand , txtProductshipped, txtProducttotalprice, txttotalamount;
+    public TextView txtProductName, txtProductPrice, txtProductQuantity, txtProductTime , txtProductDate , txtProductBrand
+            , txtProductshipped, txtProducttotalprice, txttotalamount , txtProductDiscount  , txtProductOverDiscount ;
+
     private ItemClickListner itemClickListener;
 
     public CartViewHolder(@NonNull View itemView) {
@@ -27,6 +29,8 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         txtProducttotalprice = itemView.findViewById(R.id.cart_total_price);
         txtProductshipped = itemView.findViewById(R.id.cart_shipped_price);
         txttotalamount = itemView.findViewById(R.id.cart_total_amount);
+        txtProductDiscount = itemView.findViewById(R.id.cart_discount);
+
 
 
     }

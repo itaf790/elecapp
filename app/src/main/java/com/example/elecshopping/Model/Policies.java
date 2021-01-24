@@ -2,6 +2,7 @@ package com.example.elecshopping.Model;
 
 public class Policies {
 
+
     public Policies(String delivery_fee, String delivery_time, String exchange_policy, String returns_policy, String payment_methods) {
         Delivery_fee = delivery_fee;
         Delivery_time = delivery_time;
@@ -15,6 +16,8 @@ public class Policies {
     private String Exchange_policy;
     private String Returns_policy;
     private String Payment_methods;
+
+
 
     public Policies(){}
 

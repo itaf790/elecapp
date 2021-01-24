@@ -144,7 +144,8 @@
 
                         android:gravity="center"
                         android:padding="15dip"
-                        android:text="" />
+                        android:text=""
+                        android:autofillHints="" />
                 </TableRow>
                 <TableRow
                     android:layout_width="wrap_content"

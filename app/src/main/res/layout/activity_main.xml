@@ -24,7 +24,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="-53dp"
         android:gravity="center|center_horizontal|center_vertical"
-        android:text="Find, Discover, Choose and Buy anything Online "
+        android:text="@string/find_discover_choose_and_buy_anything_online"
         android:textColor="#EA7D1A"
         android:textColorLink="#EF7D1A"
         android:textSize="20dp"
