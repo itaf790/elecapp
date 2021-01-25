@@ -23,6 +23,8 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.BreakIterator;
+
 public class AdminCheckOrdersActivity extends AppCompatActivity {
 
     private RecyclerView ordersList;
@@ -67,6 +69,7 @@ public class AdminCheckOrdersActivity extends AppCompatActivity {
                         holder.userTotalPrice.setText( model.getTotalAmount());
                         holder.userDateTime.setText("Order at: " + model.getDate() + "  ,  " + model.getTime());
                         holder.userShippingAddress.setText("Shipping Address:  " + model.getAddress());
+                        holder.userEmail.setText("Email  " + model.getEmail());
 
                         holder.showOrdersBtn.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -131,8 +134,9 @@ public class AdminCheckOrdersActivity extends AppCompatActivity {
 
 
     public static class AdminOrdersViewHolder extends RecyclerView.ViewHolder{
-        public TextView userName, userPhoneNumber, userTotalPrice, userDateTime,userShippingAddress;
+        public TextView userName, userPhoneNumber, userTotalPrice, userDateTime,userShippingAddress , userEmail;
         public Button showOrdersBtn;
+
 
         public AdminOrdersViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -142,6 +146,7 @@ public class AdminCheckOrdersActivity extends AppCompatActivity {
             userTotalPrice = itemView.findViewById(R.id.order_total_price);
             userDateTime = itemView.findViewById(R.id.order_date_time);
             userShippingAddress = itemView.findViewById(R.id.order_address_city);
+            userEmail = itemView.findViewById(R.id.order_email);
             showOrdersBtn = itemView.findViewById(R.id.show_all_products_btn);
 
 

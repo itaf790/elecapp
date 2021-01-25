@@ -2,18 +2,17 @@ package com.example.elecshopping.Model;
 
 public class Cart {
 
+    private String pid,pname,price,pquantity, brand , date , time , delivery_fee , delivery_time , payment_method , numberquantity , totalAmount , overdiscount ,discount, image ;
 
-    private String pid,pname,price,pquantity,discount, brand , date , time , delivery_fee , delivery_time , payment_method , numberquantity , totalAmount , overdiscount  ;
-
-    public Cart(String pid, String pname,String totalAmount, String price, String pquantity, String discount, String brand, String date, String time, String delivery_fee, String delivery_time, String payment_method, String numberquantity) {
+    public Cart(String pid, String pname,String totalAmount, String price,String image, String pquantity,  String brand, String date, String time, String delivery_fee, String delivery_time, String payment_method, String numberquantity) {
         this.pid = pid;
         this.pname = pname;
         this.price = price;
         this.pquantity = pquantity;
-        this.discount = discount;
         this.brand = brand;
         this.date = date;
         this.time = time;
+        this.image = image;
         this.delivery_fee = delivery_fee;
         this.delivery_time = delivery_time;
         this.payment_method = payment_method;
@@ -43,7 +42,13 @@ public class Cart {
 
     public Cart() {
     }
+    public String getImage() {
+        return image;
+    }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public String getPid() {
         return pid;

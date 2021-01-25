@@ -1,11 +1,22 @@
 package com.example.elecshopping.Model;
 
 public class AdminOrders {
-    private String name, phone, address, city, state, date , time, totalAmount , reason, exchangeorreturns;
+    private String name, phone, address, city, state, date , time, totalAmount , reason, exchangeorreturns , email;
 
     public AdminOrders() {
     }
 
+    public AdminOrders(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public AdminOrders(String name, String phone, String address, String city, String state, String date, String time, String totalAmount, String reason, String exchangeorreturns) {
         this.name = name;

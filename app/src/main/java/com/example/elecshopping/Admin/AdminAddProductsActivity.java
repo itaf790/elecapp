@@ -167,10 +167,6 @@ public class AdminAddProductsActivity extends AppCompatActivity {
 
             Toast.makeText(this, "Please write product discount", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(pquantity)) {
-
-            Toast.makeText(this, "Please write product quantity", Toast.LENGTH_SHORT).show();
-        }
 
 
         else{

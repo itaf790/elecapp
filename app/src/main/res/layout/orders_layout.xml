@@ -18,28 +18,38 @@
 
         <TextView
             android:id="@+id/order_user_name"
-            android:layout_width="160dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="user name"
+            android:gravity="center"
             android:textColor="#393636"
             android:textSize="18dp"
             android:layout_marginLeft="5dp"
+
             android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/order_phone_number"
-            android:layout_width="160dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="5dp"
             android:text="phone number"
-            android:textAlignment="viewEnd"
+            android:layout_below="@id/order_user_name"
             android:textColor="#393636"
             android:textSize="18dp"
+            android:layout_marginTop="10dp"
             android:textStyle="bold"
-
-            android:layout_alignParentRight="true"
-            android:gravity="end" />
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/order_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:layout_below="@id/order_phone_number"
+            android:textColor="#393636"
+            android:textSize="18dp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:gravity="center"/>
         <TextView
             android:id="@+id/order_total_price"
             android:layout_width="match_parent"
@@ -48,9 +58,9 @@
             android:textColor="#393636"
             android:textSize="18dp"
             android:textStyle="bold"
-            android:layout_below="@id/order_phone_number"
+            android:layout_below="@id/order_email"
             android:gravity="center"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             />
         <TextView
             android:id="@+id/order_address_city"

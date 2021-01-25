@@ -36,7 +36,8 @@ public class AdminUserProductsActivity extends AppCompatActivity {
     private TextView txtTotalAmount  ;
     private DatabaseReference cartListRef;
     private ImageView closeTextBtn;
-    private int overTotalAmount = 0 , overtotal=0;
+    private double overTotalAmount = 0 , overtotal=0 ,total_after_discount= 0, Total=0, discount= 0 , totalprice=0 ;
+
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private DatabaseReference mUserDatabase = FirebaseDatabase.getInstance().getReference();
@@ -48,6 +49,16 @@ public class AdminUserProductsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_user_products);
 
+
+        closeTextBtn = (ImageView) findViewById(R.id.close);
+        closeTextBtn.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                finish();
+            }
+        });
         userID =  getIntent().getStringExtra("uid");
         productsList = findViewById(R.id.products_list);
         productsList.setHasFixedSize(true);
@@ -74,25 +85,33 @@ public class AdminUserProductsActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder cartViewHolder, int position, @NonNull Cart model) {
+
+
+
                 cartViewHolder.txtProductQuantity.setText(" Product Quantity = " + model.getNumberquantity());
-                cartViewHolder.txtProductPrice.setText("Product Price = $" + model.getPrice() + " $");
+                cartViewHolder.txtProductPrice.setText("Product Price = $" + model.getPrice());
                 cartViewHolder.txtProductName.setText(" Product Name: " + model.getPname());
                 cartViewHolder.txtProductBrand.setText("Brand :  " + model.getBrand());
                 cartViewHolder.txtProductTime.setText("Time: "+ model.getTime());
                 cartViewHolder.txtProductDate.setText("Date:  "+ model.getDate());
                 cartViewHolder.txtProductshipped.setText("Shipped Price =  $ "+ model.getDelivery_fee());
+                cartViewHolder.txtProductDiscount.setText("Discount = % "+ model.getDiscount());
 
+                double oneTypeTotalPrice = (Integer.valueOf(model.getPrice())) * Integer.valueOf(model.getNumberquantity());
+                double oneTypeTotalShipped = (Integer.valueOf(model.getDelivery_fee())) ;
 
-
-
-                int oneTypeTotalPrice = (Integer.valueOf(model.getPrice())) * Integer.valueOf(model.getNumberquantity());
-                int oneTypeTotalShipped = (Integer.valueOf(model.getDelivery_fee())) ;
+                double discount =(Double.valueOf(model.getDiscount()))/100;
                 overtotal = oneTypeTotalPrice + oneTypeTotalShipped;
-                overTotalAmount = overTotalAmount + oneTypeTotalPrice +oneTypeTotalShipped;
+
+                total_after_discount= overtotal*discount;
+
+                totalprice= overtotal-total_after_discount;
+
+                overTotalAmount = overTotalAmount + totalprice;
 
                 cartViewHolder.txtProducttotalprice.setText("Total Price =  $"+ oneTypeTotalPrice);
-                cartViewHolder.txttotalamount.setText("Total Amount = $ "+ overtotal);
-
+                cartViewHolder.txttotalamount.setText("Total Amount = $ "+ totalprice);
+                txtTotalAmount.setText("Total Price = $" + overTotalAmount);
 
                 final DatabaseReference cartListRef= FirebaseDatabase.getInstance().getReference().child("Cart List");
 

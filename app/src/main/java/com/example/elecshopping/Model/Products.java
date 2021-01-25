@@ -2,7 +2,8 @@ package com.example.elecshopping.Model;
 
 public class Products {
 
-    private String pname, description,price, image,category, date,pid,time , delivery_time , delivery_fee, payment_method , pquantity , brand, totalAmount, discount, overdiscount;
+    private String pname, description,price, image,category, date,pid,time , delivery_time , delivery_fee, payment_method , pquantity , brand, totalAmount, discount, overdiscount, numberquantity ;
+    ;
 
     public String getDiscount() {
         return discount;
@@ -18,6 +19,18 @@ public class Products {
 
     public void setOverdiscount(String overdiscount) {
         this.overdiscount = overdiscount;
+    }
+
+    public Products(String numberquantity) {
+        this.numberquantity = numberquantity;
+    }
+
+    public String getNumberquantity() {
+        return numberquantity;
+    }
+
+    public void setNumberquantity(String numberquantity) {
+        this.numberquantity = numberquantity;
     }
 
     public Products(){
@@ -37,7 +50,6 @@ public class Products {
         this.delivery_fee = delivery_fee;
         this.payment_method = payment_method;
         this.pquantity = pquantity;
-        this.brand = brand;
         this.totalAmount = totalAmount;
     }
 

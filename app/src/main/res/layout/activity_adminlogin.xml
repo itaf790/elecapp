@@ -86,6 +86,7 @@
         android:layout_below="@id/passwordadmin"
         android:text="Log In "
         />
+
     <TextView
         android:id="@+id/forget"
         android:layout_width="wrap_content"
@@ -93,7 +94,7 @@
         android:layout_below="@+id/loginadmin"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="13dp"
         android:text="Forget Password?"
         android:textColor="#000000"
         android:textSize="17dp"

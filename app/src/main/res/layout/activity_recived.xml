@@ -85,7 +85,7 @@
         />
 
     <EditText
-        android:id="@+id/shipment_city"
+        android:id="@+id/shipment_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/shipment_address"

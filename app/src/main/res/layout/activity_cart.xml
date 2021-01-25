@@ -32,7 +32,7 @@
         android:text="My Cart"
         android:textAlignment="center"
         android:textColor="#372E2E"
-        android:textSize="25dp"
+        android:textSize="18dp"
         android:textStyle="bold"
        ></TextView>
 

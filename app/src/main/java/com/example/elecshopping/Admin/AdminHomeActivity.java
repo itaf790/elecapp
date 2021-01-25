@@ -16,7 +16,7 @@ public class AdminHomeActivity extends AppCompatActivity {
 
     private Button exchangepolicy , returnspolicy, deliverytime , deliveryfee
             ,paymentmethod , logout , addcategory , addproducts , maintan_item
-            , show_orders;
+            , show_orders , admindiscount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         addproducts= (Button)findViewById(R.id.add_new_item);
         maintan_item= (Button)findViewById(R.id.maintan_item);
         show_orders =(Button)findViewById(R.id.show_orders);
+        admindiscount =(Button)findViewById(R.id.discountallproducts);
 
 
 
@@ -60,6 +61,15 @@ public class AdminHomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(AdminHomeActivity.this, HomeActivity.class);
                 intent.putExtra("Admin","Admin");
+                startActivity(intent);
+
+            }
+        });
+
+        admindiscount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminHomeActivity.this, AdminDiscountActivity.class);
                 startActivity(intent);
 
             }

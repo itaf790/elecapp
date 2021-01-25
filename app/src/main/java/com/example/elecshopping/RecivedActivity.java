@@ -34,7 +34,7 @@ import java.util.HashMap;
 public class RecivedActivity extends AppCompatActivity {
 
 
-    private EditText nameEditText, phoneEditText, addressEditText, cityEditText;
+    private EditText nameEditText, phoneEditText, addressEditText, emailEditText;
     private Button confirmOrderBtn;
     private ImageView closeTextBtn;
     private TextView txttotalprice;
@@ -55,7 +55,7 @@ public class RecivedActivity extends AppCompatActivity {
         nameEditText = (EditText) findViewById(R.id.shipment_name);
         phoneEditText = (EditText) findViewById(R.id.shipment_phone_number);
         addressEditText = (EditText) findViewById(R.id.shipment_address);
-        cityEditText = (EditText) findViewById(R.id.shipment_city);
+        emailEditText = (EditText) findViewById(R.id.shipment_email);
         txttotalprice = (TextView) findViewById(R.id.txttotalprice);
 
         confirmOrderBtn.setOnClickListener(new View.OnClickListener() {
@@ -108,8 +108,8 @@ public class RecivedActivity extends AppCompatActivity {
         else if (TextUtils.isEmpty(addressEditText.getText().toString())){
             Toast.makeText(this, "Please provide your address", Toast.LENGTH_SHORT).show();
         }
-        else if (TextUtils.isEmpty(cityEditText.getText().toString())){
-            Toast.makeText(this, "Please provide your city name ", Toast.LENGTH_SHORT).show();
+        else if (TextUtils.isEmpty(emailEditText.getText().toString())){
+            Toast.makeText(this, "Please provide your email ", Toast.LENGTH_SHORT).show();
         }
 
         else{
@@ -136,7 +136,7 @@ public class RecivedActivity extends AppCompatActivity {
         ordersMap.put("name",nameEditText.getText().toString());
         ordersMap.put("phone",phoneEditText.getText().toString());
         ordersMap.put("address",addressEditText.getText().toString());
-        ordersMap.put("city",cityEditText.getText().toString());
+        ordersMap.put("email",emailEditText.getText().toString());
         ordersMap.put("date",saveCurrentDate);
         ordersMap.put("time",saveCurrentTime);
         ordersMap.put("state","not shipped");
